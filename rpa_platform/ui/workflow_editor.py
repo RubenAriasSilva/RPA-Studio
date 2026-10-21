@@ -253,13 +253,14 @@ class WorkflowEditor(QWidget):
 
     def load_workflow(self, workflow: Workflow):
         self._workflow = workflow
-        self._refresh(select=([], []))
+        self._refresh(select=([], []), keep_scroll=False)
 
-    def _refresh(self, select=None):
+    def _refresh(self, select=None, keep_scroll: bool = True):
         """Rebuild the tree. `select` = (group_ids, step_ids); None keeps the current selection."""
         if select is None:
             select = (self._selected_group_ids(), self._selected_step_ids())
         group_sel, step_sel = set(select[0]), set(select[1])
+        scroll = self._tree.verticalScrollBar().value() if keep_scroll else 0
 
         self._tree.blockSignals(True)
         self._tree.clear()
@@ -284,7 +285,12 @@ class WorkflowEditor(QWidget):
                     current = current or g_item
         if current:
             self._tree.setCurrentItem(current, 0, QItemSelectionModel.SelectionFlag.NoUpdate)
-            self._tree.scrollToItem(current)
+        # clear() resets the scroll and setCurrentItem auto-scrolls: restore the previous
+        # position and only scroll if the current item ended up out of view
+        self._tree.doItemsLayout()
+        self._tree.verticalScrollBar().setValue(scroll)
+        if current:
+            self._tree.scrollToItem(current, QAbstractItemView.ScrollHint.EnsureVisible)
         self._tree.blockSignals(False)
         self._on_selection_changed()
 
