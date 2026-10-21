@@ -1,11 +1,11 @@
 {
-  "workflow_id": "decf6c44-083e-46d5-a78d-c9b256769179",
+  "workflow_id": "2ec98688-ecbe-49dc-81fe-f8344a17978c",
   "name": "Nuevo Workflow",
   "description": "",
   "variables": {},
   "steps": [
     {
-      "step_id": "dea3b464",
+      "step_id": "25d5d417",
       "action_type": "hotkey",
       "params": {
         "keys": "win+r"
@@ -14,16 +14,17 @@
       "label_override": ""
     },
     {
-      "step_id": "522fe871",
+      "step_id": "34957211",
       "action_type": "type_text",
       "params": {
-        "text": "powershell"
+        "text": "\"C:\\Program Files (x86)\\SAP\\FrontEnd\\SAPgui\\saplogon.exe\"",
+        "interval": 0.01
       },
       "enabled": true,
       "label_override": ""
     },
     {
-      "step_id": "be2d67ec",
+      "step_id": "96f8f39e",
       "action_type": "key_press",
       "params": {
         "key": "enter"
@@ -32,25 +33,34 @@
       "label_override": ""
     },
     {
-      "step_id": "b549ff3d",
+      "step_id": "d1eaaa5a",
       "action_type": "delay",
       "params": {
-        "seconds": 4.0
+        "seconds": 10.0
       },
       "enabled": true,
       "label_override": ""
     },
     {
-      "step_id": "2f7aa5f2",
+      "step_id": "e1cd2354",
+      "action_type": "hotkey",
+      "params": {
+        "keys": "ctrl+f"
+      },
+      "enabled": true,
+      "label_override": ""
+    },
+    {
+      "step_id": "12ca61bc",
       "action_type": "type_text",
       "params": {
-        "text": "Set-Clipboard -Value ([bool](Get-Process saplogon -ErrorAction SilentlyContinue))"
+        "text": "P14"
       },
       "enabled": true,
       "label_override": ""
     },
     {
-      "step_id": "3919f26f",
+      "step_id": "ff8f778c",
       "action_type": "key_press",
       "params": {
         "key": "enter"
@@ -59,55 +69,58 @@
       "label_override": ""
     },
     {
-      "step_id": "aa8a175a",
+      "step_id": "ce2cf2c5",
+      "action_type": "delay",
+      "params": {
+        "seconds": 5.0
+      },
+      "enabled": true,
+      "label_override": ""
+    },
+    {
+      "step_id": "82176bc4",
       "action_type": "hotkey",
       "params": {
-        "keys": "win+r"
+        "keys": "alt+space",
+        "delay_after": 0.2
       },
       "enabled": true,
       "label_override": ""
     },
     {
-      "step_id": "58d4672e",
-      "action_type": "type_text",
-      "params": {
-        "text": "\"C:\\Program Files\\SAP\\FrontEnd\\SAPGUI\\saplogon.exe\""
-      },
-      "enabled": true,
-      "label_override": ""
-    },
-    {
-      "step_id": "9d2eda05",
+      "step_id": "a7d7065e",
       "action_type": "key_press",
       "params": {
-        "key": "enter"
+        "key": "x"
       },
       "enabled": true,
       "label_override": ""
     },
     {
-      "step_id": "49ce1aaf",
-      "action_type": "get_clipboard",
+      "step_id": "9eee2fb2",
+      "action_type": "mouse_click",
       "params": {
-        "variable_name": "clipboard"
+        "x": "115",
+        "y": "50"
       },
       "enabled": true,
       "label_override": ""
     },
     {
-      "step_id": "3f672e7e",
-      "action_type": "wait",
+      "step_id": "559ba625",
+      "action_type": "type_text",
       "params": {
-        "variable_name": "clipboard"
+        "text": "LX02"
       },
       "enabled": true,
       "label_override": ""
     },
     {
-      "step_id": "75cb60d6",
-      "action_type": "hotkey",
+      "step_id": "a2fb905e",
+      "action_type": "key_press",
       "params": {
-        "keys": "win"
+        "key": "enter",
+        "presses": 1
       },
       "enabled": true,
       "label_override": ""

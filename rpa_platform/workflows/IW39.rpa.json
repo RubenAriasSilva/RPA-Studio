@@ -1,0 +1,1152 @@
+{
+  "workflow_id": "2ec98688-ecbe-49dc-81fe-f8344a17978c",
+  "name": "Nuevo Workflow",
+  "description": "",
+  "variables": {},
+  "groups": [
+    {
+      "group_id": "6ff5c7c7",
+      "title": "Abrir SAP",
+      "enabled": true,
+      "collapsed": true,
+      "steps": [
+        {
+          "step_id": "25d5d417",
+          "action_type": "hotkey",
+          "params": {
+            "keys": "win+r"
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "34957211",
+          "action_type": "type_text",
+          "params": {
+            "text": "\"C:\\Program Files (x86)\\SAP\\FrontEnd\\SAPgui\\saplogon.exe\"",
+            "interval": 0.01
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "96f8f39e",
+          "action_type": "key_press",
+          "params": {
+            "key": "enter"
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "d1eaaa5a",
+          "action_type": "delay",
+          "params": {
+            "seconds": 10.0
+          },
+          "enabled": true,
+          "label_override": ""
+        }
+      ]
+    },
+    {
+      "group_id": "d633f8a5",
+      "title": "Ingresar a transaccion IW39",
+      "enabled": true,
+      "collapsed": true,
+      "steps": [
+        {
+          "step_id": "e1cd2354",
+          "action_type": "hotkey",
+          "params": {
+            "keys": "ctrl+f"
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "12ca61bc",
+          "action_type": "type_text",
+          "params": {
+            "text": "P14"
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "ff8f778c",
+          "action_type": "key_press",
+          "params": {
+            "key": "enter"
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "ce2cf2c5",
+          "action_type": "delay",
+          "params": {
+            "seconds": 8.0
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "82176bc4",
+          "action_type": "hotkey",
+          "params": {
+            "keys": "alt+space",
+            "delay_after": 0.2
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "a7d7065e",
+          "action_type": "key_press",
+          "params": {
+            "key": "x"
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "9eee2fb2",
+          "action_type": "mouse_click",
+          "params": {
+            "x": "115",
+            "y": "50"
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "559ba625",
+          "action_type": "type_text",
+          "params": {
+            "text": "IW39"
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "a2fb905e",
+          "action_type": "key_press",
+          "params": {
+            "key": "enter",
+            "presses": 1
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "3fc13e23",
+          "action_type": "delay",
+          "params": {
+            "seconds": 4.3
+          },
+          "enabled": true,
+          "label_override": ""
+        }
+      ]
+    },
+    {
+      "group_id": "f4e13b01",
+      "title": "Transaccion IW39",
+      "enabled": true,
+      "collapsed": true,
+      "steps": [
+        {
+          "step_id": "ac7d7550",
+          "action_type": "hotkey",
+          "params": {
+            "keys": "ctrl+home"
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "2be6efde",
+          "action_type": "mouse_click",
+          "params": {
+            "x": "217",
+            "y": "175"
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "1a8468dc",
+          "action_type": "mouse_click",
+          "params": {
+            "x": "308",
+            "y": "175"
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "13c0486b",
+          "action_type": "key_press",
+          "params": {
+            "key": "down",
+            "presses": 2
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "20eeefbb",
+          "action_type": "type_text",
+          "params": {
+            "text": "MPRE"
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "dd02663d",
+          "action_type": "hotkey",
+          "params": {
+            "keys": "ctrl+tab"
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "5ae86d1f",
+          "action_type": "hotkey",
+          "params": {
+            "keys": "ctrl+tab"
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "e2516643",
+          "action_type": "key_press",
+          "params": {
+            "key": "up",
+            "presses": 6
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "b0304315",
+          "action_type": "hotkey",
+          "params": {
+            "keys": "win+r"
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "425fef72",
+          "action_type": "type_text",
+          "params": {
+            "text": "powershell"
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "c8674d54",
+          "action_type": "key_press",
+          "params": {
+            "key": "enter"
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "e0cd1321",
+          "action_type": "delay",
+          "params": {
+            "seconds": 3.3
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "953c8c36",
+          "action_type": "type_text",
+          "params": {
+            "text": "Set-Clipboard -Value (Get-Date -Format \"01.MM.yyyy\")"
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "d2c674fa",
+          "action_type": "delay",
+          "params": {},
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "dfaeb39d",
+          "action_type": "key_press",
+          "params": {
+            "key": "enter"
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "c446784b",
+          "action_type": "delay",
+          "params": {
+            "seconds": 2.0
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "940baeb4",
+          "action_type": "hotkey",
+          "params": {
+            "keys": "alt+f4"
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "51ff0dc4",
+          "action_type": "hotkey",
+          "params": {
+            "keys": "ctrl+a"
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "452fb42c",
+          "action_type": "delay",
+          "params": {},
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "c5ad3e5e",
+          "action_type": "hotkey",
+          "params": {
+            "keys": "ctrl+v"
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "b8790f24",
+          "action_type": "key_press",
+          "params": {
+            "key": "tab"
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "8d35a8a3",
+          "action_type": "hotkey",
+          "params": {
+            "keys": "win+r"
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "ce4e438c",
+          "action_type": "type_text",
+          "params": {
+            "text": "powershell"
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "ccf08144",
+          "action_type": "key_press",
+          "params": {
+            "key": "enter"
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "a3e15a4a",
+          "action_type": "delay",
+          "params": {
+            "seconds": 3.3
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "8f85efa7",
+          "action_type": "type_text",
+          "params": {
+            "text": "Set-Clipboard -Value (\"{0:00}.{1}\" -f [datetime]::DaysInMonth((Get-Date).Year,(Get-Date).Month), (Get-Date -Format \"MM.yyyy\"))"
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "29e4f9d9",
+          "action_type": "delay",
+          "params": {},
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "2ed47dca",
+          "action_type": "key_press",
+          "params": {
+            "key": "enter"
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "3331fa80",
+          "action_type": "delay",
+          "params": {
+            "seconds": 2.0
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "1f3c60dd",
+          "action_type": "hotkey",
+          "params": {
+            "keys": "alt+f4"
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "a63e20e0",
+          "action_type": "hotkey",
+          "params": {
+            "keys": "ctrl+a"
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "9ec90f93",
+          "action_type": "delay",
+          "params": {},
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "b820664e",
+          "action_type": "hotkey",
+          "params": {
+            "keys": "ctrl+v"
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "c106f53a",
+          "action_type": "hotkey",
+          "params": {
+            "keys": "ctrl+tab"
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "0a79ebd3",
+          "action_type": "hotkey",
+          "params": {
+            "keys": "ctrl+tab"
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "c09eead5",
+          "action_type": "key_press",
+          "params": {
+            "key": "down"
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "aa262f90",
+          "action_type": "hotkey",
+          "params": {
+            "keys": "ctrl+a"
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "bc9ded0a",
+          "action_type": "type_text",
+          "params": {
+            "text": "DANY"
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "5f8b0824",
+          "action_type": "key_press",
+          "params": {
+            "key": "F8"
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "d77190fa",
+          "action_type": "delay",
+          "params": {
+            "seconds": 8.0
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "1c2cba95",
+          "action_type": "key_press",
+          "params": {
+            "key": "F5"
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "e3d6988a",
+          "action_type": "mouse_move",
+          "params": {
+            "x": "860",
+            "y": "595"
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "c5c125f3",
+          "action_type": "hotkey",
+          "params": {
+            "keys": "shift+F10"
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "e9e9c7de",
+          "action_type": "delay",
+          "params": {
+            "seconds": 2.0
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "e005017c",
+          "action_type": "key_press",
+          "params": {
+            "key": "up"
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "3b9018c7",
+          "action_type": "key_press",
+          "params": {
+            "key": "enter"
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "5cafc17f",
+          "action_type": "delay",
+          "params": {
+            "seconds": 2.0
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "abecb861",
+          "action_type": "key_press",
+          "params": {
+            "key": "enter"
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "a2649967",
+          "action_type": "delay",
+          "params": {
+            "seconds": 4.1
+          },
+          "enabled": true,
+          "label_override": ""
+        }
+      ]
+    },
+    {
+      "group_id": "2f61e315",
+      "title": "Descargar Excel",
+      "enabled": true,
+      "collapsed": false,
+      "steps": [
+        {
+          "step_id": "b17f9ee9",
+          "action_type": "hotkey",
+          "params": {
+            "keys": "win+r"
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "3414d8a4",
+          "action_type": "type_text",
+          "params": {
+            "text": "powershell"
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "19668df1",
+          "action_type": "key_press",
+          "params": {
+            "key": "enter"
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "51e0e5e7",
+          "action_type": "delay",
+          "params": {
+            "seconds": 3.0
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "1b1564a9",
+          "action_type": "type_text",
+          "params": {
+            "text": "Set-Clipboard -Value (\"C:\\Users\\z0323462\\Downloads\\ExcelRPA\\IW39\\LX02_\" + (Get-Date -Format \"dd-MM-yyyy_HH-mm\"))"
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "2ba9a813",
+          "action_type": "get_clipboard",
+          "params": {
+            "variable_name": "archivo"
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "56f584c3",
+          "action_type": "key_press",
+          "params": {
+            "key": "enter"
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "20c06e6e",
+          "action_type": "delay",
+          "params": {
+            "seconds": 2.0
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "529a0cb4",
+          "action_type": "hotkey",
+          "params": {
+            "keys": "alt+F4"
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "584d648e",
+          "action_type": "delay",
+          "params": {
+            "seconds": 2.0
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "80791661",
+          "action_type": "hotkey",
+          "params": {
+            "keys": "ctrl+v"
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "317f2cb7",
+          "action_type": "key_press",
+          "params": {
+            "key": "enter"
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "04f8deda",
+          "action_type": "delay",
+          "params": {
+            "seconds": 3.0
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "b345cf66",
+          "action_type": "key_press",
+          "params": {
+            "key": "left"
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "76f05f83",
+          "action_type": "key_press",
+          "params": {
+            "key": "enter"
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "34672565",
+          "action_type": "delay",
+          "params": {
+            "seconds": 3.0
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "45995e83",
+          "action_type": "key_press",
+          "params": {
+            "key": "left"
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "fe073efc",
+          "action_type": "key_press",
+          "params": {
+            "key": "enter"
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "0c77f5df",
+          "action_type": "delay",
+          "params": {
+            "seconds": 2.3
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "e23387d2",
+          "action_type": "hotkey",
+          "params": {
+            "keys": "win+r"
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "69b18f3d",
+          "action_type": "type_text",
+          "params": {
+            "text": "powershell"
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "ace6d854",
+          "action_type": "key_press",
+          "params": {
+            "key": "enter"
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "ee511806",
+          "action_type": "delay",
+          "params": {
+            "seconds": 2.0
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "7a79c8fa",
+          "action_type": "type_text",
+          "params": {
+            "text": "$xl = [Runtime.InteropServices.Marshal]::GetActiveObject('Excel.Application')\n$xl.WindowState = -4137"
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "8e2f6a18",
+          "action_type": "key_press",
+          "params": {
+            "key": "enter"
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "6049aa17",
+          "action_type": "delay",
+          "params": {
+            "seconds": 2.0
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "3edeb957",
+          "action_type": "hotkey",
+          "params": {
+            "keys": "alt+F4"
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "981683cc",
+          "action_type": "delay",
+          "params": {
+            "seconds": 2.0
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "f5f31814",
+          "action_type": "hotkey",
+          "params": {
+            "keys": "alt+F4"
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "f6a2a5a5",
+          "action_type": "delay",
+          "params": {},
+          "enabled": false,
+          "label_override": ""
+        },
+        {
+          "step_id": "72608678",
+          "action_type": "hotkey",
+          "params": {
+            "keys": "win+r"
+          },
+          "enabled": false,
+          "label_override": ""
+        },
+        {
+          "step_id": "f3c4f539",
+          "action_type": "type_text",
+          "params": {
+            "text": "powershell"
+          },
+          "enabled": false,
+          "label_override": ""
+        },
+        {
+          "step_id": "3ac2b51d",
+          "action_type": "key_press",
+          "params": {
+            "key": "enter"
+          },
+          "enabled": false,
+          "label_override": ""
+        },
+        {
+          "step_id": "ca17c4fd",
+          "action_type": "delay",
+          "params": {
+            "seconds": 3.0
+          },
+          "enabled": false,
+          "label_override": ""
+        },
+        {
+          "step_id": "7a7a34a6",
+          "action_type": "type_text",
+          "params": {
+            "text": "$env:API_URL = \"http://10.239.28.162:3000/api/transacciones\""
+          },
+          "enabled": false,
+          "label_override": ""
+        },
+        {
+          "step_id": "3f2d255e",
+          "action_type": "key_press",
+          "params": {
+            "key": "enter"
+          },
+          "enabled": false,
+          "label_override": ""
+        },
+        {
+          "step_id": "f8d7a65d",
+          "action_type": "delay",
+          "params": {
+            "seconds": 2.0
+          },
+          "enabled": false,
+          "label_override": ""
+        },
+        {
+          "step_id": "04a1668e",
+          "action_type": "type_text",
+          "params": {
+            "text": "Invoke-RestMethod \"http://10.239.28.162:3000/api/health\""
+          },
+          "enabled": false,
+          "label_override": ""
+        },
+        {
+          "step_id": "5a87241e",
+          "action_type": "key_press",
+          "params": {
+            "key": "enter"
+          },
+          "enabled": false,
+          "label_override": ""
+        },
+        {
+          "step_id": "aa0a9b65",
+          "action_type": "delay",
+          "params": {
+            "seconds": 2.0
+          },
+          "enabled": false,
+          "label_override": ""
+        },
+        {
+          "step_id": "6094e15a",
+          "action_type": "type_text",
+          "params": {
+            "text": "cd C:\\Users\\z0323462\\Downloads\\cliente"
+          },
+          "enabled": false,
+          "label_override": ""
+        },
+        {
+          "step_id": "5daf4bbb",
+          "action_type": "key_press",
+          "params": {
+            "key": "enter"
+          },
+          "enabled": false,
+          "label_override": ""
+        },
+        {
+          "step_id": "0a6939d0",
+          "action_type": "delay",
+          "params": {
+            "seconds": 2.0
+          },
+          "enabled": false,
+          "label_override": ""
+        },
+        {
+          "step_id": "02878e4c",
+          "action_type": "type_text",
+          "params": {
+            "text": "node enviar-excel.js C:\\Users\\z0323462\\Downloads\\"
+          },
+          "enabled": false,
+          "label_override": ""
+        },
+        {
+          "step_id": "164e8266",
+          "action_type": "hotkey",
+          "params": {
+            "keys": "ctrl+v"
+          },
+          "enabled": false,
+          "label_override": ""
+        },
+        {
+          "step_id": "85ffea07",
+          "action_type": "type_text",
+          "params": {
+            "text": ".xlsx"
+          },
+          "enabled": false,
+          "label_override": ""
+        },
+        {
+          "step_id": "5f324918",
+          "action_type": "key_press",
+          "params": {
+            "key": "enter"
+          },
+          "enabled": false,
+          "label_override": ""
+        },
+        {
+          "step_id": "3ce7eb13",
+          "action_type": "delay",
+          "params": {
+            "seconds": 2.0
+          },
+          "enabled": false,
+          "label_override": ""
+        },
+        {
+          "step_id": "83ef5c25",
+          "action_type": "hotkey",
+          "params": {
+            "keys": "alt+F4"
+          },
+          "enabled": false,
+          "label_override": ""
+        },
+        {
+          "step_id": "785ff311",
+          "action_type": "delay",
+          "params": {
+            "seconds": 2.0
+          },
+          "enabled": false,
+          "label_override": ""
+        },
+        {
+          "step_id": "931a6b0a",
+          "action_type": "hotkey",
+          "params": {
+            "keys": "alt+F4"
+          },
+          "enabled": false,
+          "label_override": ""
+        },
+        {
+          "step_id": "5538978a",
+          "action_type": "delay",
+          "params": {
+            "seconds": 2.0
+          },
+          "enabled": false,
+          "label_override": ""
+        },
+        {
+          "step_id": "0cc6f868",
+          "action_type": "hotkey",
+          "params": {
+            "keys": "shift+tab"
+          },
+          "enabled": false,
+          "label_override": ""
+        },
+        {
+          "step_id": "fdb54508",
+          "action_type": "key_press",
+          "params": {
+            "key": "enter"
+          },
+          "enabled": false,
+          "label_override": ""
+        },
+        {
+          "step_id": "34c9e484",
+          "action_type": "delay",
+          "params": {
+            "seconds": 2.0
+          },
+          "enabled": false,
+          "label_override": ""
+        },
+        {
+          "step_id": "c87a61c1",
+          "action_type": "hotkey",
+          "params": {
+            "keys": "alt+F4"
+          },
+          "enabled": false,
+          "label_override": ""
+        }
+      ]
+    },
+    {
+      "group_id": "09ae9c04",
+      "title": "Subir excel al Data Hub",
+      "enabled": true,
+      "collapsed": false,
+      "steps": [
+        {
+          "step_id": "983671a8",
+          "action_type": "hotkey",
+          "params": {
+            "keys": "win+r"
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "c7014aaa",
+          "action_type": "type_text",
+          "params": {
+            "text": "powershell"
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "6e0c8311",
+          "action_type": "key_press",
+          "params": {
+            "key": "enter"
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "5d8c7a29",
+          "action_type": "type_text",
+          "params": {},
+          "enabled": true,
+          "label_override": ""
+        }
+      ]
+    }
+  ]
+}
