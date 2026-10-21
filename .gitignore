@@ -1,0 +1,13 @@
+# Entorno y caché de Python
+venv/
+.venv/
+__pycache__/
+*.pyc
+
+# Salida de PyInstaller (el .exe se publica en GitHub Releases)
+build/
+dist/
+
+# Datos locales
+rpa_platform/logs/
+.vs/

@@ -1,0 +1,183 @@
+{
+  "workflow_id": "4e881e37-8dc5-411b-b515-77bc3bbe92b0",
+  "name": "Nuevo Workflow",
+  "description": "",
+  "variables": {},
+  "steps": [
+    {
+      "step_id": "45168420",
+      "action_type": "hotkey",
+      "params": {
+        "keys": "win+r"
+      },
+      "enabled": true,
+      "label_override": ""
+    },
+    {
+      "step_id": "da83832b",
+      "action_type": "type_text",
+      "params": {
+        "text": "https://www.bing.com/search?q=historial+del+clima"
+      },
+      "enabled": true,
+      "label_override": ""
+    },
+    {
+      "step_id": "b0941aa2",
+      "action_type": "key_press",
+      "params": {
+        "key": "enter"
+      },
+      "enabled": true,
+      "label_override": ""
+    },
+    {
+      "step_id": "8525622b",
+      "action_type": "set_variable",
+      "params": {
+        "variable_name": "pos1",
+        "value": "233,690"
+      },
+      "enabled": true,
+      "label_override": ""
+    },
+    {
+      "step_id": "718b11a8",
+      "action_type": "mouse_move",
+      "params": {
+        "x": "",
+        "from_variable": "pos1"
+      },
+      "enabled": true,
+      "label_override": ""
+    },
+    {
+      "step_id": "616b3abe",
+      "action_type": "delay",
+      "params": {},
+      "enabled": true,
+      "label_override": ""
+    },
+    {
+      "step_id": "44e6ee23",
+      "action_type": "mouse_click",
+      "params": {
+        "x": "",
+        "y": "",
+        "region": "",
+        "from_variable": "pos1"
+      },
+      "enabled": true,
+      "label_override": ""
+    },
+    {
+      "step_id": "0ccdd48a",
+      "action_type": "set_variable",
+      "params": {
+        "variable_name": "pos2",
+        "value": "209,450"
+      },
+      "enabled": true,
+      "label_override": ""
+    },
+    {
+      "step_id": "d041d7d5",
+      "action_type": "mouse_move",
+      "params": {
+        "x": "",
+        "from_variable": "pos2",
+        "y": ""
+      },
+      "enabled": true,
+      "label_override": ""
+    },
+    {
+      "step_id": "096580d0",
+      "action_type": "mouse_click",
+      "params": {
+        "from_variable": "pos2",
+        "x": "",
+        "y": "",
+        "clicks": 2,
+        "offset_x": 0,
+        "wait_after": 0.1,
+        "region": ""
+      },
+      "enabled": true,
+      "label_override": ""
+    },
+    {
+      "step_id": "a4abeca8",
+      "action_type": "hotkey",
+      "params": {
+        "keys": "ctrl+c"
+      },
+      "enabled": true,
+      "label_override": ""
+    },
+    {
+      "step_id": "32d5938d",
+      "action_type": "get_clipboard",
+      "params": {
+        "variable_name": "pegar"
+      },
+      "enabled": true,
+      "label_override": ""
+    },
+    {
+      "step_id": "28a65570",
+      "action_type": "excel_write_cell",
+      "params": {
+        "file_path": "C:/Users/Z0348136/Downloads/10_RPA_Vision/workflows/Test.xlsx",
+        "from_variable": "pegar"
+      },
+      "enabled": true,
+      "label_override": ""
+    },
+    {
+      "step_id": "d3267deb",
+      "action_type": "hotkey",
+      "params": {
+        "keys": "win+r"
+      },
+      "enabled": false,
+      "label_override": ""
+    },
+    {
+      "step_id": "6e6ca46b",
+      "action_type": "type_text",
+      "params": {
+        "text": "excel \"C:\\Users\\Z0348136\\Downloads\\10_RPA_Vision\\workflows\\Test.xlsx\""
+      },
+      "enabled": false,
+      "label_override": ""
+    },
+    {
+      "step_id": "9b82f056",
+      "action_type": "key_press",
+      "params": {
+        "key": "enter"
+      },
+      "enabled": false,
+      "label_override": ""
+    },
+    {
+      "step_id": "d05ea15e",
+      "action_type": "delay",
+      "params": {
+        "seconds": 5.0
+      },
+      "enabled": false,
+      "label_override": ""
+    },
+    {
+      "step_id": "a74346df",
+      "action_type": "hotkey",
+      "params": {
+        "keys": "ctrl+v"
+      },
+      "enabled": false,
+      "label_override": ""
+    }
+  ]
+}

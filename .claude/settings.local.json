@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(Get-ChildItem \"C:\\\\Development\\\\10\\) RPA\" -Force)",
+      "Bash(Select-Object Name, LastWriteTime)",
+      "PowerShell(pip *)",
+      "PowerShell(Get-Process *)"
+    ]
+  }
+}

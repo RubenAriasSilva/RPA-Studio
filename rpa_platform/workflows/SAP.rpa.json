@@ -1,0 +1,116 @@
+{
+  "workflow_id": "decf6c44-083e-46d5-a78d-c9b256769179",
+  "name": "Nuevo Workflow",
+  "description": "",
+  "variables": {},
+  "steps": [
+    {
+      "step_id": "dea3b464",
+      "action_type": "hotkey",
+      "params": {
+        "keys": "win+r"
+      },
+      "enabled": true,
+      "label_override": ""
+    },
+    {
+      "step_id": "522fe871",
+      "action_type": "type_text",
+      "params": {
+        "text": "powershell"
+      },
+      "enabled": true,
+      "label_override": ""
+    },
+    {
+      "step_id": "be2d67ec",
+      "action_type": "key_press",
+      "params": {
+        "key": "enter"
+      },
+      "enabled": true,
+      "label_override": ""
+    },
+    {
+      "step_id": "b549ff3d",
+      "action_type": "delay",
+      "params": {
+        "seconds": 4.0
+      },
+      "enabled": true,
+      "label_override": ""
+    },
+    {
+      "step_id": "2f7aa5f2",
+      "action_type": "type_text",
+      "params": {
+        "text": "Set-Clipboard -Value ([bool](Get-Process saplogon -ErrorAction SilentlyContinue))"
+      },
+      "enabled": true,
+      "label_override": ""
+    },
+    {
+      "step_id": "3919f26f",
+      "action_type": "key_press",
+      "params": {
+        "key": "enter"
+      },
+      "enabled": true,
+      "label_override": ""
+    },
+    {
+      "step_id": "aa8a175a",
+      "action_type": "hotkey",
+      "params": {
+        "keys": "win+r"
+      },
+      "enabled": true,
+      "label_override": ""
+    },
+    {
+      "step_id": "58d4672e",
+      "action_type": "type_text",
+      "params": {
+        "text": "\"C:\\Program Files\\SAP\\FrontEnd\\SAPGUI\\saplogon.exe\""
+      },
+      "enabled": true,
+      "label_override": ""
+    },
+    {
+      "step_id": "9d2eda05",
+      "action_type": "key_press",
+      "params": {
+        "key": "enter"
+      },
+      "enabled": true,
+      "label_override": ""
+    },
+    {
+      "step_id": "49ce1aaf",
+      "action_type": "get_clipboard",
+      "params": {
+        "variable_name": "clipboard"
+      },
+      "enabled": true,
+      "label_override": ""
+    },
+    {
+      "step_id": "3f672e7e",
+      "action_type": "wait",
+      "params": {
+        "variable_name": "clipboard"
+      },
+      "enabled": true,
+      "label_override": ""
+    },
+    {
+      "step_id": "75cb60d6",
+      "action_type": "hotkey",
+      "params": {
+        "keys": "win"
+      },
+      "enabled": true,
+      "label_override": ""
+    }
+  ]
+}
