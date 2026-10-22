@@ -3,34 +3,115 @@
   "name": "Nuevo Workflow",
   "description": "",
   "variables": {},
-  "steps": [
+  "groups": [
     {
-      "step_id": "25d5d417",
-      "action_type": "hotkey",
-      "params": {
-        "keys": "win+r"
-      },
+      "group_id": "4316c3eb",
+      "title": "Sin título",
       "enabled": true,
-      "label_override": ""
-    },
-    {
-      "step_id": "34957211",
-      "action_type": "type_text",
-      "params": {
-        "text": "cmd",
-        "interval": 0.01
-      },
-      "enabled": true,
-      "label_override": ""
-    },
-    {
-      "step_id": "7b42db86",
-      "action_type": "key_press",
-      "params": {
-        "key": "enter"
-      },
-      "enabled": true,
-      "label_override": ""
+      "collapsed": false,
+      "steps": [
+        {
+          "step_id": "25d5d417",
+          "action_type": "hotkey",
+          "params": {
+            "keys": "win+r"
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "34957211",
+          "action_type": "type_text",
+          "params": {
+            "text": "powershell",
+            "interval": 0.01
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "7b42db86",
+          "action_type": "key_press",
+          "params": {
+            "key": "enter"
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "e3b39a55",
+          "action_type": "delay",
+          "params": {
+            "seconds": 2.0
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "7bd5a01b",
+          "action_type": "type_text",
+          "params": {
+            "text": "ABC"
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "65a0ed42",
+          "action_type": "type_text",
+          "params": {
+            "text": "123"
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "5687642e",
+          "action_type": "hotkey",
+          "params": {
+            "keys": "ctrl+a"
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "881d01a5",
+          "action_type": "hotkey",
+          "params": {
+            "keys": "ctrl+c"
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "086fd0fa",
+          "action_type": "get_clipboard",
+          "params": {
+            "variable_name": "var"
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "b50431ff",
+          "action_type": "type_text",
+          "params": {
+            "text": "    "
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "9b89a304",
+          "action_type": "type_text",
+          "params": {
+            "source": "Variable",
+            "variable_name": "var"
+          },
+          "enabled": true,
+          "label_override": ""
+        }
+      ]
     }
   ]
 }
