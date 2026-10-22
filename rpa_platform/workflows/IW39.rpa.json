@@ -642,16 +642,7 @@
           "step_id": "1b1564a9",
           "action_type": "type_text",
           "params": {
-            "text": "Set-Clipboard -Value (\"C:\\Users\\z0323462\\Downloads\\ExcelRPA\\IW39\\LX02_\" + (Get-Date -Format \"dd-MM-yyyy_HH-mm\"))"
-          },
-          "enabled": true,
-          "label_override": ""
-        },
-        {
-          "step_id": "2ba9a813",
-          "action_type": "get_clipboard",
-          "params": {
-            "variable_name": "archivo"
+            "text": "Set-Clipboard -Value (\"C:\\Users\\z0323462\\Downloads\\ExcelRPA\\IW39\\IW39_\" + (Get-Date -Format \"dd-MM-yyyy_HH-mm\"))"
           },
           "enabled": true,
           "label_override": ""
@@ -670,6 +661,15 @@
           "action_type": "delay",
           "params": {
             "seconds": 2.0
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "2ba9a813",
+          "action_type": "get_clipboard",
+          "params": {
+            "variable_name": "archivo"
           },
           "enabled": true,
           "label_override": ""
@@ -862,247 +862,6 @@
           },
           "enabled": true,
           "label_override": ""
-        },
-        {
-          "step_id": "f6a2a5a5",
-          "action_type": "delay",
-          "params": {},
-          "enabled": false,
-          "label_override": ""
-        },
-        {
-          "step_id": "72608678",
-          "action_type": "hotkey",
-          "params": {
-            "keys": "win+r"
-          },
-          "enabled": false,
-          "label_override": ""
-        },
-        {
-          "step_id": "f3c4f539",
-          "action_type": "type_text",
-          "params": {
-            "text": "powershell"
-          },
-          "enabled": false,
-          "label_override": ""
-        },
-        {
-          "step_id": "3ac2b51d",
-          "action_type": "key_press",
-          "params": {
-            "key": "enter"
-          },
-          "enabled": false,
-          "label_override": ""
-        },
-        {
-          "step_id": "ca17c4fd",
-          "action_type": "delay",
-          "params": {
-            "seconds": 3.0
-          },
-          "enabled": false,
-          "label_override": ""
-        },
-        {
-          "step_id": "7a7a34a6",
-          "action_type": "type_text",
-          "params": {
-            "text": "$env:API_URL = \"http://10.239.28.162:3000/api/transacciones\""
-          },
-          "enabled": false,
-          "label_override": ""
-        },
-        {
-          "step_id": "3f2d255e",
-          "action_type": "key_press",
-          "params": {
-            "key": "enter"
-          },
-          "enabled": false,
-          "label_override": ""
-        },
-        {
-          "step_id": "f8d7a65d",
-          "action_type": "delay",
-          "params": {
-            "seconds": 2.0
-          },
-          "enabled": false,
-          "label_override": ""
-        },
-        {
-          "step_id": "04a1668e",
-          "action_type": "type_text",
-          "params": {
-            "text": "Invoke-RestMethod \"http://10.239.28.162:3000/api/health\""
-          },
-          "enabled": false,
-          "label_override": ""
-        },
-        {
-          "step_id": "5a87241e",
-          "action_type": "key_press",
-          "params": {
-            "key": "enter"
-          },
-          "enabled": false,
-          "label_override": ""
-        },
-        {
-          "step_id": "aa0a9b65",
-          "action_type": "delay",
-          "params": {
-            "seconds": 2.0
-          },
-          "enabled": false,
-          "label_override": ""
-        },
-        {
-          "step_id": "6094e15a",
-          "action_type": "type_text",
-          "params": {
-            "text": "cd C:\\Users\\z0323462\\Downloads\\cliente"
-          },
-          "enabled": false,
-          "label_override": ""
-        },
-        {
-          "step_id": "5daf4bbb",
-          "action_type": "key_press",
-          "params": {
-            "key": "enter"
-          },
-          "enabled": false,
-          "label_override": ""
-        },
-        {
-          "step_id": "0a6939d0",
-          "action_type": "delay",
-          "params": {
-            "seconds": 2.0
-          },
-          "enabled": false,
-          "label_override": ""
-        },
-        {
-          "step_id": "02878e4c",
-          "action_type": "type_text",
-          "params": {
-            "text": "node enviar-excel.js C:\\Users\\z0323462\\Downloads\\"
-          },
-          "enabled": false,
-          "label_override": ""
-        },
-        {
-          "step_id": "164e8266",
-          "action_type": "hotkey",
-          "params": {
-            "keys": "ctrl+v"
-          },
-          "enabled": false,
-          "label_override": ""
-        },
-        {
-          "step_id": "85ffea07",
-          "action_type": "type_text",
-          "params": {
-            "text": ".xlsx"
-          },
-          "enabled": false,
-          "label_override": ""
-        },
-        {
-          "step_id": "5f324918",
-          "action_type": "key_press",
-          "params": {
-            "key": "enter"
-          },
-          "enabled": false,
-          "label_override": ""
-        },
-        {
-          "step_id": "3ce7eb13",
-          "action_type": "delay",
-          "params": {
-            "seconds": 2.0
-          },
-          "enabled": false,
-          "label_override": ""
-        },
-        {
-          "step_id": "83ef5c25",
-          "action_type": "hotkey",
-          "params": {
-            "keys": "alt+F4"
-          },
-          "enabled": false,
-          "label_override": ""
-        },
-        {
-          "step_id": "785ff311",
-          "action_type": "delay",
-          "params": {
-            "seconds": 2.0
-          },
-          "enabled": false,
-          "label_override": ""
-        },
-        {
-          "step_id": "931a6b0a",
-          "action_type": "hotkey",
-          "params": {
-            "keys": "alt+F4"
-          },
-          "enabled": false,
-          "label_override": ""
-        },
-        {
-          "step_id": "5538978a",
-          "action_type": "delay",
-          "params": {
-            "seconds": 2.0
-          },
-          "enabled": false,
-          "label_override": ""
-        },
-        {
-          "step_id": "0cc6f868",
-          "action_type": "hotkey",
-          "params": {
-            "keys": "shift+tab"
-          },
-          "enabled": false,
-          "label_override": ""
-        },
-        {
-          "step_id": "fdb54508",
-          "action_type": "key_press",
-          "params": {
-            "key": "enter"
-          },
-          "enabled": false,
-          "label_override": ""
-        },
-        {
-          "step_id": "34c9e484",
-          "action_type": "delay",
-          "params": {
-            "seconds": 2.0
-          },
-          "enabled": false,
-          "label_override": ""
-        },
-        {
-          "step_id": "c87a61c1",
-          "action_type": "hotkey",
-          "params": {
-            "keys": "alt+F4"
-          },
-          "enabled": false,
-          "label_override": ""
         }
       ]
     },
@@ -1140,9 +899,101 @@
           "label_override": ""
         },
         {
+          "step_id": "1dea20a3",
+          "action_type": "delay",
+          "params": {
+            "seconds": 2.0
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "15a0e560",
+          "action_type": "type_text",
+          "params": {
+            "text": "curl.exe -X POST \"http://10.239.16.37:4000/api/v1/rpas/iw39/upload\" -F \"file=@"
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
           "step_id": "5d8c7a29",
           "action_type": "type_text",
-          "params": {},
+          "params": {
+            "source": "Variable",
+            "variable_name": "archivo"
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "01b6348b",
+          "action_type": "type_text",
+          "params": {
+            "text": ".xlsx\""
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "c50d8ca0",
+          "action_type": "key_press",
+          "params": {
+            "key": "enter"
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "30011c24",
+          "action_type": "delay",
+          "params": {
+            "seconds": 5.0
+          },
+          "enabled": true,
+          "label_override": ""
+        }
+      ]
+    },
+    {
+      "group_id": "3bfa71fb",
+      "title": "Cerrar todo",
+      "enabled": true,
+      "collapsed": false,
+      "steps": [
+        {
+          "step_id": "3fa5d2da",
+          "action_type": "type_text",
+          "params": {
+            "text": "Stop-Process -Name saplogon -Force -ErrorAction SilentlyContinue"
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "a513271c",
+          "action_type": "key_press",
+          "params": {
+            "key": "enter"
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "f07051ac",
+          "action_type": "delay",
+          "params": {
+            "seconds": 3.0
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "0c0483eb",
+          "action_type": "hotkey",
+          "params": {
+            "keys": "alt+F4"
+          },
           "enabled": true,
           "label_override": ""
         }
