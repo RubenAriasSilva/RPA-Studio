@@ -221,6 +221,7 @@ class WorkflowRunner:
                 "total_steps": total,
                 "stop_event": self._stop_event,
                 "pause_event": self._pause_event,
+                "log": self._log,
             }
 
             if self.on_step_start:

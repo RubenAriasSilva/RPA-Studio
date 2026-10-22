@@ -13,8 +13,9 @@ from .ocr import OCRRegionAction, OCRFindTextAction
 from .sap import (
     SAPLaunchAction, SAPFocusWindowAction, SAPOpenTransactionAction,
     SAPTypeInFieldAction, SAPReadFieldOCRAction, SAPClickButtonAction,
+    SAPWaitScreenAction,
 )
-from .control import DelayAction, WaitForVariableAction, IfConditionAction, LoopAction, SetVariableAction, GetClipBoard, LoopStartAction, LoopEndAction
+from .control import DelayAction, WaitForWindowAction, WaitForVariableAction, IfConditionAction, LoopAction, SetVariableAction, GetClipBoard, LoopStartAction, LoopEndAction
 from .dialogs import ShowAlertAction, ShowPromptAction
 from .excel import (
     ExcelReadCellAction, ExcelReadRangeAction, ExcelWriteCellAction,
@@ -47,9 +48,11 @@ ACTION_REGISTRY = {
     "sap_type_in_field": SAPTypeInFieldAction,
     "sap_read_field_ocr": SAPReadFieldOCRAction,
     "sap_click_button": SAPClickButtonAction,
+    "sap_wait_screen": SAPWaitScreenAction,
     "show_alert": ShowAlertAction,
     "show_prompt": ShowPromptAction,
     "delay": DelayAction,
+    "wait_for_window": WaitForWindowAction,
     "wait" : WaitForVariableAction,
     "if_condition": IfConditionAction,
     "loop": LoopStartAction,
@@ -78,11 +81,11 @@ ACTION_CATEGORIES = {
     "Mouse": ["mouse_click", "mouse_move", "mouse_scroll"],
     "Pantalla": ["screenshot", "find_image", "wait_for_image", "wait_for_screen_change"],
     "OCR": ["ocr_region", "ocr_find_text"],
-    "SAP": ["sap_launch", "sap_focus_window", "sap_open_transaction", "sap_type_in_field", "sap_read_field_ocr", "sap_click_button"],
+    "SAP": ["sap_launch", "sap_focus_window", "sap_open_transaction", "sap_type_in_field", "sap_read_field_ocr", "sap_click_button", "sap_wait_screen"],
     "Excel": ["excel_foreach_row", "excel_read_cell", "excel_read_range", "excel_write_cell",
               "excel_append_row", "excel_format_range", "excel_find_value", "excel_save"],
     "Diálogos": ["show_alert", "show_prompt"],
-    "Control": ["delay", "wait", "set_variable", "get_clipboard", "if_condition", "loop_start", "loop_end"],
+    "Control": ["delay", "wait_for_window", "wait", "set_variable", "get_clipboard", "if_condition", "loop_start", "loop_end"],
 }
 
 ACTION_LABELS = {
@@ -110,9 +113,11 @@ ACTION_LABELS = {
     "sap_type_in_field": "SAP - Escribir Campo",
     "sap_read_field_ocr": "SAP - Leer Campo (OCR)",
     "sap_click_button": "SAP - Click / Tecla",
+    "sap_wait_screen": "SAP - Esperar Cambio de Pantalla",
     "show_alert": "Mostrar Alerta",
     "show_prompt": "Pedir Dato al Usuario",
     "delay": "Esperar (Delay)",
+    "wait_for_window": "Esperar Ventana",
     "wait": "Esperar a una variable",
     "if_condition": "Condición Si/No",
     "loop_start": "Inicio de Loop",

@@ -289,8 +289,23 @@ class ProgressBlock(QWidget):
         outer.setSpacing(2)
         self._lay = outer
         self._lines: List[QLabel] = []
+        self._progress_lbl: Optional[QLabel] = None  # live delay counter, rewritten in place
 
     def add_line(self, text: str, level: str = "info"):
+        if level == "progress":
+            html = (f'<span style="color:{TXT3};">[{datetime.now().strftime("%H:%M:%S")}]</span> '
+                    f'<span style="color:{BLUE}; font-family:Consolas;">{text.strip()}</span>')
+            if self._progress_lbl is None:
+                self._progress_lbl = QLabel()
+                self._progress_lbl.setObjectName("progressLine")
+                self._progress_lbl.setTextFormat(Qt.TextFormat.RichText)
+                self._lay.addWidget(self._progress_lbl)
+            self._progress_lbl.setText(html)
+            return
+        if self._progress_lbl is not None:
+            self._lay.removeWidget(self._progress_lbl)
+            self._progress_lbl.deleteLater()
+            self._progress_lbl = None
         colors = {"info": TXT2, "success": GREEN, "warning": ORANGE, "error": RED}
         icons  = {"info": "·", "success": "✓", "warning": "!", "error": "✗"}
         color  = colors.get(level, TXT2)

@@ -2,7 +2,7 @@ from datetime import datetime
 from PyQt6.QtWidgets import QWidget, QVBoxLayout, QHBoxLayout, QPlainTextEdit, QPushButton, QLabel
 from PyQt6.QtGui import QTextCharFormat, QColor, QFont, QTextCursor
 from PyQt6.QtCore import Qt, pyqtSlot
-from .theme import TXT1, TXT3, TXT1_HEX, TXT3_HEX, TXT4_HEX, SUCCESS, WARNING, ERROR, DIVIDER
+from .theme import TXT1, TXT3, TXT1_HEX, TXT3_HEX, TXT4_HEX, SUCCESS, WARNING, ERROR, INFO, DIVIDER
 
 LOG_COLORS = {
     "info":    TXT1_HEX,
@@ -10,6 +10,7 @@ LOG_COLORS = {
     "warning": WARNING,
     "error":   ERROR,
     "debug":   TXT3_HEX,
+    "progress": INFO,
 }
 
 
@@ -17,6 +18,7 @@ class LogPanel(QWidget):
     def __init__(self, parent=None):
         super().__init__(parent)
         self.setObjectName("logPanel")
+        self._progress_shown = False  # last line is a live "progress" line
         self._setup_ui()
 
     def _setup_ui(self):
@@ -62,6 +64,10 @@ class LogPanel(QWidget):
 
         cursor = self._text.textCursor()
         cursor.movePosition(QTextCursor.MoveOperation.End)
+        # A progress line is rewritten in place and dropped once the step reports its result
+        if self._progress_shown:
+            self._remove_last_line(cursor)
+        self._progress_shown = level == "progress"
 
         fmt_time = QTextCharFormat()
         fmt_time.setForeground(QColor(TXT4_HEX))
@@ -77,5 +83,14 @@ class LogPanel(QWidget):
         self._text.setTextCursor(cursor)
         self._text.ensureCursorVisible()
 
+    @staticmethod
+    def _remove_last_line(cursor: QTextCursor):
+        # Every line ends with a newline, so the document's last block is empty
+        cursor.movePosition(QTextCursor.MoveOperation.PreviousBlock)
+        cursor.movePosition(QTextCursor.MoveOperation.StartOfBlock)
+        cursor.movePosition(QTextCursor.MoveOperation.End, QTextCursor.MoveMode.KeepAnchor)
+        cursor.removeSelectedText()
+
     def clear(self):
         self._text.clear()
+        self._progress_shown = False

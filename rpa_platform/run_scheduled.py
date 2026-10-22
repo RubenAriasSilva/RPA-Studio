@@ -40,6 +40,8 @@ def main() -> int:
 
     with open(log_path, "w", encoding="utf-8") as log:
         def on_log(msg, level="info"):
+            if level == "progress":  # live delay counters only make sense on screen
+                return
             log.write(f"[{datetime.now().strftime('%H:%M:%S')}] {level.upper():7} {msg}\n")
             log.flush()
 

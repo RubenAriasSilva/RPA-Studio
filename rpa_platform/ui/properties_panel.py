@@ -140,13 +140,15 @@ class PropertiesPanel(QWidget):
         return self._schema.get(key, {}).get("default", "")
 
     def _apply_visibility(self):
-        """Show/hide fields declaring `visible_if: (controller_key, value)`."""
+        """Show/hide fields declaring `visible_if: (controller_key, value | [values])`."""
         for key, meta in self._schema.items():
             cond = meta.get("visible_if")
             if not cond or key not in self._field_rows:
                 continue
             ctrl_key, expected = cond
-            visible = str(self._field_value(ctrl_key)) == str(expected)
+            if not isinstance(expected, (list, tuple)):
+                expected = [expected]
+            visible = str(self._field_value(ctrl_key)) in [str(e) for e in expected]
             for w in self._field_rows[key]:
                 w.setVisible(visible)
 

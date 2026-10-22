@@ -437,6 +437,137 @@ class SAPClickButtonAction(BaseAction):
         return "SAP buscar botón"
 
 
+class SAPWaitScreenAction(BaseAction):
+    """Waits until SAP leaves the current screen.
+
+    SAP GUI shows the screen name in the session window title, so a title change
+    means the new screen is rendered (e.g. a report that takes minutes to run).
+    Popups (information, errors, "Guardar como") are new windows of the SAP process.
+    """
+    action_type = "sap_wait_screen"
+    label = "SAP - Esperar Cambio de Pantalla"
+    icon = "⌛"
+
+    COND_ANY = "Cambie la pantalla o aparezca una ventana"
+    COND_SCREEN = "Cambie la pantalla"
+    COND_POPUP = "Aparezca una ventana emergente"
+    COND_CONTAINS = "El título contenga"
+    COND_NOT_CONTAINS = "El título deje de contener"
+
+    ON_TIMEOUT_FAIL = "Marcar error"
+    ON_TIMEOUT_CONTINUE = "Continuar"
+
+    PARAM_SCHEMA = {
+        "condition": {"type": "choice", "label": "Esperar hasta que", "default": COND_ANY,
+                      "choices": [COND_ANY, COND_SCREEN, COND_POPUP, COND_CONTAINS, COND_NOT_CONTAINS]},
+        "text": {"type": "str", "label": "Texto del título de la pantalla",
+                 "placeholder": "ej. Pantalla inicial",
+                 "visible_if": ("condition", [COND_CONTAINS, COND_NOT_CONTAINS])},
+        "title_fragment": {"type": "str", "label": "Ventana SAP a vigilar (fragmento del título; vacío = la activa)",
+                           "default": ""},
+        "timeout": {"type": "float", "label": "Tiempo máximo de espera (seg)", "default": 600.0},
+        "on_timeout": {"type": "choice", "label": "Si se agota el tiempo", "default": ON_TIMEOUT_FAIL,
+                       "choices": [ON_TIMEOUT_FAIL, ON_TIMEOUT_CONTINUE]},
+        "wait_after": {"type": "float", "label": "Espera tras detectar el cambio (seg)", "default": 0.5},
+        "output_variable": {"type": "str", "label": "Variable para el título nuevo", "default": "sap_titulo"},
+    }
+
+    @staticmethod
+    def _pick_session(windows, fragment: str):
+        """The SAP main window to watch: the active one if it is SAP, else the topmost."""
+        fragment = fragment.lower()
+        candidates = [w for w in windows if w.is_sap and not w.owned
+                      and (not fragment or fragment in w.title.lower())]
+        if not candidates:
+            return None
+        from .windows import foreground_hwnd
+        fg = foreground_hwnd()
+        return next((w for w in candidates if w.hwnd == fg), candidates[0])
+
+    def execute(self, context: Dict[str, Any]) -> ActionResult:
+        from .windows import list_windows, window_exists, window_title, wait_until
+
+        params = self.resolve_params(context.get("variables", {}))
+        condition = params.get("condition", self.COND_ANY)
+        text = str(params.get("text", "")).strip()
+        timeout = max(0.0, float(params.get("timeout", 600.0)))
+        wait_after = max(0.0, float(params.get("wait_after", 0.5)))
+        output_var = str(params.get("output_variable", self.PARAM_SCHEMA["output_variable"]["default"])).strip()
+
+        if condition in (self.COND_CONTAINS, self.COND_NOT_CONTAINS) and not text:
+            return ActionResult.failure("Indica el texto del título a comprobar")
+
+        try:
+            windows = list_windows()
+        except Exception as e:
+            return ActionResult.failure(f"No se pudieron enumerar las ventanas: {e}")
+        session = self._pick_session(windows, params.get("title_fragment", "").strip())
+        if session is None:
+            return ActionResult.failure("No se encontró una ventana de SAP GUI abierta")
+
+        start_title = session.title
+        known = {w.hwnd for w in windows if w.is_sap}
+        watch_screen = condition in (self.COND_ANY, self.COND_SCREEN)
+        watch_popup = condition in (self.COND_ANY, self.COND_POPUP)
+        needle = text.lower()
+
+        def check():
+            if not window_exists(session.hwnd):
+                return "cerrada", ""
+            if watch_popup:
+                popup = next((w for w in list_windows() if w.is_sap and w.hwnd not in known), None)
+                if popup:
+                    return "ventana", popup.title
+            title = window_title(session.hwnd)
+            if watch_screen and title != start_title:
+                return "pantalla", title
+            if condition == self.COND_CONTAINS and needle in title.lower():
+                return "pantalla", title
+            if condition == self.COND_NOT_CONTAINS and needle not in title.lower():
+                return "pantalla", title
+            return None
+
+        found, elapsed, stopped = wait_until(context, check, timeout, interval=0.3)
+        if stopped:
+            return ActionResult.success(output="Espera de SAP interrumpida al detener el workflow")
+
+        if found is None:
+            msg = f"SAP siguió en «{start_title}» después de {timeout:g} s"
+            if params.get("on_timeout", self.ON_TIMEOUT_FAIL) == self.ON_TIMEOUT_CONTINUE:
+                variables = {output_var: window_title(session.hwnd)} if output_var else {}
+                return ActionResult.success(output=f"{msg} — se continúa", variables=variables)
+            return ActionResult.failure(msg)
+
+        kind, title = found
+        if kind == "cerrada" and condition == self.COND_CONTAINS:
+            return ActionResult.failure(f"La ventana SAP «{start_title}» se cerró antes de llegar a «{text}»")
+        time.sleep(wait_after)
+        variables = {output_var: title} if output_var else {}
+        if kind == "cerrada":
+            output = f"La ventana SAP «{start_title}» se cerró tras {elapsed:.1f} s"
+        elif kind == "ventana":
+            output = f"Apareció la ventana SAP «{title}» tras {elapsed:.1f} s"
+        else:
+            output = f"Pantalla SAP: «{start_title}» → «{title}» tras {elapsed:.1f} s"
+        return ActionResult.success(output=output, variables=variables)
+
+    def get_summary(self) -> str:
+        condition = self.params.get("condition", self.COND_ANY)
+        text = str(self.params.get("text", "")).strip()
+        timeout = self.params.get("timeout", 600.0)
+        if condition == self.COND_CONTAINS:
+            what = f"título contenga «{text}»"
+        elif condition == self.COND_NOT_CONTAINS:
+            what = f"título deje de contener «{text}»"
+        elif condition == self.COND_SCREEN:
+            what = "cambio de pantalla"
+        elif condition == self.COND_POPUP:
+            what = "ventana emergente"
+        else:
+            what = "cambio de pantalla o ventana"
+        return f"SAP esperar {what} (máx {timeout}s)"
+
+
 # Keep old field names for legacy workflows but point to new classes
 SAPWriteFieldAction = SAPTypeInFieldAction
 SAPReadFieldAction = SAPReadFieldOCRAction
