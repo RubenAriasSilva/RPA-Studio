@@ -39,10 +39,22 @@
           "label_override": ""
         },
         {
-          "step_id": "d1eaaa5a",
+          "step_id": "3e721876",
+          "action_type": "wait_for_window",
+          "params": {
+            "timeout": 60.0,
+            "only_new": true,
+            "on_timeout": "Marcar error",
+            "focus": false
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "e621af2b",
           "action_type": "delay",
           "params": {
-            "seconds": 10.0
+            "seconds": 4.0
           },
           "enabled": true,
           "label_override": ""
@@ -121,14 +133,22 @@
           "label_override": ""
         },
         {
-          "step_id": "501427a2",
+          "step_id": "f3f9091d",
           "action_type": "delay",
           "params": {
-            "seconds": 7.0
+            "seconds": 2.0
           },
           "enabled": true,
           "label_override": ""
-        },
+        }
+      ]
+    },
+    {
+      "group_id": "10b1c9f0",
+      "title": "ZCO022",
+      "enabled": true,
+      "collapsed": true,
+      "steps": [
         {
           "step_id": "9eee2fb2",
           "action_type": "mouse_click",
@@ -138,15 +158,7 @@
           },
           "enabled": true,
           "label_override": ""
-        }
-      ]
-    },
-    {
-      "group_id": "10b1c9f0",
-      "title": "Transaccion ZCO022",
-      "enabled": true,
-      "collapsed": false,
-      "steps": [
+        },
         {
           "step_id": "6d67c0dd",
           "action_type": "type_text",
@@ -262,10 +274,11 @@
           "label_override": ""
         },
         {
-          "step_id": "adcffbce",
-          "action_type": "delay",
+          "step_id": "43e7deb5",
+          "action_type": "sap_wait_screen",
           "params": {
-            "seconds": 180.0
+            "timeout": 900.0,
+            "wait_after": 1.0
           },
           "enabled": true,
           "label_override": ""
@@ -281,7 +294,7 @@
           "label_override": ""
         },
         {
-          "step_id": "d24ddb99",
+          "step_id": "99f376ba",
           "action_type": "delay",
           "params": {
             "seconds": 2.0
@@ -308,10 +321,11 @@
           "label_override": ""
         },
         {
-          "step_id": "675bb40b",
-          "action_type": "delay",
+          "step_id": "4f9fcd8d",
+          "action_type": "sap_wait_screen",
           "params": {
-            "seconds": 4.0
+            "timeout": 100.0,
+            "wait_after": 1.0
           },
           "enabled": true,
           "label_override": ""
@@ -326,10 +340,11 @@
           "label_override": ""
         },
         {
-          "step_id": "5a605d67",
-          "action_type": "delay",
+          "step_id": "8625b272",
+          "action_type": "sap_wait_screen",
           "params": {
-            "seconds": 12.0
+            "timeout": 100.0,
+            "wait_after": 1.0
           },
           "enabled": true,
           "label_override": ""
@@ -340,7 +355,7 @@
           "params": {
             "keys": "win+r"
           },
-          "enabled": false,
+          "enabled": true,
           "label_override": ""
         },
         {
@@ -349,7 +364,7 @@
           "params": {
             "text": "powershell"
           },
-          "enabled": false,
+          "enabled": true,
           "label_override": ""
         },
         {
@@ -358,7 +373,7 @@
           "params": {
             "key": "enter"
           },
-          "enabled": false,
+          "enabled": true,
           "label_override": ""
         },
         {
@@ -367,7 +382,7 @@
           "params": {
             "seconds": 4.3
           },
-          "enabled": false,
+          "enabled": true,
           "label_override": ""
         },
         {
@@ -376,7 +391,7 @@
           "params": {
             "text": "Set-Clipboard -Value (\"C:\\Users\\z0323462\\Downloads\\ExcelRPA\\PFEP\\ZCO022_\" + (Get-Date -Format \"dd-MM-yyyy_HH-mm\"))"
           },
-          "enabled": false,
+          "enabled": true,
           "label_override": ""
         },
         {
@@ -385,7 +400,7 @@
           "params": {
             "key": "enter"
           },
-          "enabled": false,
+          "enabled": true,
           "label_override": ""
         },
         {
@@ -394,7 +409,7 @@
           "params": {
             "seconds": 2.0
           },
-          "enabled": false,
+          "enabled": true,
           "label_override": ""
         },
         {
@@ -403,7 +418,7 @@
           "params": {
             "keys": "alt+F4"
           },
-          "enabled": false,
+          "enabled": true,
           "label_override": ""
         },
         {
@@ -412,7 +427,7 @@
           "params": {
             "seconds": 2.0
           },
-          "enabled": false,
+          "enabled": true,
           "label_override": ""
         },
         {
@@ -421,7 +436,7 @@
           "params": {
             "keys": "ctrl+v"
           },
-          "enabled": false,
+          "enabled": true,
           "label_override": ""
         },
         {
@@ -430,35 +445,224 @@
           "params": {
             "key": "enter"
           },
-          "enabled": false,
+          "enabled": true,
           "label_override": ""
         },
         {
-          "step_id": "4083ac7d",
+          "step_id": "b73a5f4c",
+          "action_type": "sap_wait_screen",
+          "params": {
+            "timeout": 100.0
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "62fcce06",
+          "action_type": "key_press",
+          "params": {
+            "key": "left"
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "5dc71aa8",
+          "action_type": "key_press",
+          "params": {
+            "key": "enter"
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "3ad4566d",
+          "action_type": "sap_wait_screen",
+          "params": {
+            "timeout": 100.0
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "6e460410",
+          "action_type": "key_press",
+          "params": {
+            "key": "left"
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "decdc5ae",
+          "action_type": "key_press",
+          "params": {
+            "key": "enter"
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "caee1d37",
           "action_type": "delay",
           "params": {
-            "seconds": 8.3
+            "seconds": 10.0
           },
-          "enabled": false,
+          "enabled": true,
           "label_override": ""
-        }
-      ]
-    },
-    {
-      "group_id": "74073961",
-      "title": "Sin título",
-      "enabled": true,
-      "collapsed": true,
-      "steps": [
+        },
+        {
+          "step_id": "bd39c5a5",
+          "action_type": "hotkey",
+          "params": {
+            "keys": "win+r"
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "e915a5de",
+          "action_type": "delay",
+          "params": {
+            "seconds": 2.3
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "a070c47b",
+          "action_type": "type_text",
+          "params": {
+            "text": "powershell"
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "e6bbb7bc",
+          "action_type": "key_press",
+          "params": {
+            "key": "enter"
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "64a85d75",
+          "action_type": "delay",
+          "params": {
+            "seconds": 3.3
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "5c5a395c",
+          "action_type": "type_text",
+          "params": {
+            "text": "$xl = [Runtime.InteropServices.Marshal]::GetActiveObject('Excel.Application')\n$xl.WindowState = -4137"
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "63aa0c03",
+          "action_type": "key_press",
+          "params": {
+            "key": "enter"
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "fe675fff",
+          "action_type": "delay",
+          "params": {
+            "seconds": 4.0
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "b9ec5ea5",
+          "action_type": "hotkey",
+          "params": {
+            "keys": "alt+F4"
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "c1780f21",
+          "action_type": "delay",
+          "params": {
+            "seconds": 2.0
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "e97f99bd",
+          "action_type": "hotkey",
+          "params": {
+            "keys": "alt+F4"
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "d7eb7c63",
+          "action_type": "delay",
+          "params": {
+            "seconds": 5.0
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "25ffb15e",
+          "action_type": "hotkey",
+          "params": {
+            "keys": "shift+F3"
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "b0d3bd86",
+          "action_type": "delay",
+          "params": {
+            "seconds": 2.0
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "f2580f0e",
+          "action_type": "hotkey",
+          "params": {
+            "keys": "shift+F3"
+          },
+          "enabled": true,
+          "label_override": ""
+        },
         {
           "step_id": "12d052c4",
           "action_type": "delay",
           "params": {
             "seconds": 3.0
           },
-          "enabled": false,
+          "enabled": true,
           "label_override": ""
-        },
+        }
+      ]
+    },
+    {
+      "group_id": "a4d3cd5b",
+      "title": "LX02",
+      "enabled": true,
+      "collapsed": true,
+      "steps": [
         {
           "step_id": "a7cab91d",
           "action_type": "mouse_click",
@@ -466,7 +670,7 @@
             "x": "115",
             "y": "50"
           },
-          "enabled": false,
+          "enabled": true,
           "label_override": ""
         },
         {
@@ -475,7 +679,7 @@
           "params": {
             "text": "LX02"
           },
-          "enabled": false,
+          "enabled": true,
           "label_override": ""
         },
         {
@@ -485,16 +689,17 @@
             "key": "enter",
             "presses": 1
           },
-          "enabled": false,
+          "enabled": true,
           "label_override": ""
         },
         {
-          "step_id": "b5c63c1f",
-          "action_type": "delay",
+          "step_id": "c69210c7",
+          "action_type": "sap_wait_screen",
           "params": {
-            "seconds": 5.0
+            "timeout": 100.0,
+            "wait_after": 1.0
           },
-          "enabled": false,
+          "enabled": true,
           "label_override": ""
         },
         {
@@ -503,7 +708,7 @@
           "params": {
             "text": "776"
           },
-          "enabled": false,
+          "enabled": true,
           "label_override": ""
         },
         {
@@ -512,7 +717,7 @@
           "params": {
             "key": "tab"
           },
-          "enabled": false,
+          "enabled": true,
           "label_override": ""
         },
         {
@@ -521,7 +726,7 @@
           "params": {
             "text": "*"
           },
-          "enabled": false,
+          "enabled": true,
           "label_override": ""
         },
         {
@@ -530,16 +735,17 @@
           "params": {
             "key": "F8"
           },
-          "enabled": false,
+          "enabled": true,
           "label_override": ""
         },
         {
-          "step_id": "5d287695",
-          "action_type": "delay",
+          "step_id": "5bd26ada",
+          "action_type": "sap_wait_screen",
           "params": {
-            "seconds": 28.0
+            "timeout": 100.0,
+            "wait_after": 1.0
           },
-          "enabled": false,
+          "enabled": true,
           "label_override": ""
         },
         {
@@ -548,16 +754,17 @@
           "params": {
             "keys": "shift+F4"
           },
-          "enabled": false,
+          "enabled": true,
           "label_override": ""
         },
         {
-          "step_id": "446c78dd",
-          "action_type": "delay",
+          "step_id": "5cc70abb",
+          "action_type": "sap_wait_screen",
           "params": {
-            "seconds": 6.0
+            "timeout": 100.0,
+            "wait_after": 1.0
           },
-          "enabled": false,
+          "enabled": true,
           "label_override": ""
         },
         {
@@ -566,16 +773,17 @@
           "params": {
             "key": "enter"
           },
-          "enabled": false,
+          "enabled": true,
           "label_override": ""
         },
         {
-          "step_id": "76730f21",
-          "action_type": "delay",
+          "step_id": "f08501b1",
+          "action_type": "sap_wait_screen",
           "params": {
-            "seconds": 10.0
+            "timeout": 100.0,
+            "wait_after": 1.0
           },
-          "enabled": false,
+          "enabled": true,
           "label_override": ""
         },
         {
@@ -584,7 +792,7 @@
           "params": {
             "keys": "win+r"
           },
-          "enabled": false,
+          "enabled": true,
           "label_override": ""
         },
         {
@@ -593,7 +801,7 @@
           "params": {
             "text": "powershell"
           },
-          "enabled": false,
+          "enabled": true,
           "label_override": ""
         },
         {
@@ -602,7 +810,7 @@
           "params": {
             "key": "enter"
           },
-          "enabled": false,
+          "enabled": true,
           "label_override": ""
         },
         {
@@ -611,7 +819,7 @@
           "params": {
             "seconds": 4.3
           },
-          "enabled": false,
+          "enabled": true,
           "label_override": ""
         },
         {
@@ -620,7 +828,7 @@
           "params": {
             "text": "Set-Clipboard -Value (\"C:\\Users\\z0323462\\Downloads\\ExcelRPA\\PFEP\\LX02_\" + (Get-Date -Format \"dd-MM-yyyy_HH-mm\"))"
           },
-          "enabled": false,
+          "enabled": true,
           "label_override": ""
         },
         {
@@ -629,7 +837,7 @@
           "params": {
             "key": "enter"
           },
-          "enabled": false,
+          "enabled": true,
           "label_override": ""
         },
         {
@@ -638,7 +846,7 @@
           "params": {
             "seconds": 2.0
           },
-          "enabled": false,
+          "enabled": true,
           "label_override": ""
         },
         {
@@ -647,7 +855,7 @@
           "params": {
             "keys": "alt+F4"
           },
-          "enabled": false,
+          "enabled": true,
           "label_override": ""
         },
         {
@@ -656,7 +864,7 @@
           "params": {
             "seconds": 2.0
           },
-          "enabled": false,
+          "enabled": true,
           "label_override": ""
         },
         {
@@ -665,7 +873,7 @@
           "params": {
             "keys": "ctrl+v"
           },
-          "enabled": false,
+          "enabled": true,
           "label_override": ""
         },
         {
@@ -674,16 +882,17 @@
           "params": {
             "key": "enter"
           },
-          "enabled": false,
+          "enabled": true,
           "label_override": ""
         },
         {
-          "step_id": "f244b555",
-          "action_type": "delay",
+          "step_id": "51e6cb06",
+          "action_type": "sap_wait_screen",
           "params": {
-            "seconds": 8.3
+            "timeout": 100.0,
+            "wait_after": 1.0
           },
-          "enabled": false,
+          "enabled": true,
           "label_override": ""
         },
         {
@@ -692,7 +901,7 @@
           "params": {
             "key": "left"
           },
-          "enabled": false,
+          "enabled": true,
           "label_override": ""
         },
         {
@@ -701,16 +910,17 @@
           "params": {
             "key": "enter"
           },
-          "enabled": false,
+          "enabled": true,
           "label_override": ""
         },
         {
-          "step_id": "d2939cd2",
-          "action_type": "delay",
+          "step_id": "2327df7f",
+          "action_type": "sap_wait_screen",
           "params": {
-            "seconds": 4.3
+            "timeout": 100.0,
+            "wait_after": 1.0
           },
-          "enabled": false,
+          "enabled": true,
           "label_override": ""
         },
         {
@@ -719,7 +929,7 @@
           "params": {
             "key": "left"
           },
-          "enabled": false,
+          "enabled": true,
           "label_override": ""
         },
         {
@@ -728,34 +938,34 @@
           "params": {
             "key": "enter"
           },
-          "enabled": false,
+          "enabled": true,
           "label_override": ""
         },
         {
-          "step_id": "f7b000c0",
-          "action_type": "delay",
+          "step_id": "1e88b0ce",
+          "action_type": "wait_for_window",
           "params": {
-            "seconds": 10.0
+            "timeout": 60.0,
+            "focus": false
           },
-          "enabled": false,
+          "enabled": true,
           "label_override": ""
-        },
-        {
-          "step_id": "3c243e74",
-          "action_type": "hotkey",
-          "params": {
-            "keys": "win+r"
-          },
-          "enabled": false,
-          "label_override": ""
-        },
+        }
+      ]
+    },
+    {
+      "group_id": "21f9cb72",
+      "title": "LX02 -> YYFP",
+      "enabled": true,
+      "collapsed": true,
+      "steps": [
         {
           "step_id": "fdc111b3",
           "action_type": "hotkey",
           "params": {
             "keys": "win+r"
           },
-          "enabled": false,
+          "enabled": true,
           "label_override": ""
         },
         {
@@ -764,7 +974,7 @@
           "params": {
             "seconds": 2.3
           },
-          "enabled": false,
+          "enabled": true,
           "label_override": ""
         },
         {
@@ -773,7 +983,7 @@
           "params": {
             "text": "powershell"
           },
-          "enabled": false,
+          "enabled": true,
           "label_override": ""
         },
         {
@@ -782,7 +992,7 @@
           "params": {
             "key": "enter"
           },
-          "enabled": false,
+          "enabled": true,
           "label_override": ""
         },
         {
@@ -791,16 +1001,16 @@
           "params": {
             "seconds": 3.3
           },
-          "enabled": false,
+          "enabled": true,
           "label_override": ""
         },
         {
-          "step_id": "278e379c",
+          "step_id": "e708bcc2",
           "action_type": "type_text",
           "params": {
             "text": "$xl = [Runtime.InteropServices.Marshal]::GetActiveObject('Excel.Application')\n$xl.WindowState = -4137"
           },
-          "enabled": false,
+          "enabled": true,
           "label_override": ""
         },
         {
@@ -809,7 +1019,7 @@
           "params": {
             "key": "enter"
           },
-          "enabled": false,
+          "enabled": true,
           "label_override": ""
         },
         {
@@ -818,7 +1028,7 @@
           "params": {
             "seconds": 2.0
           },
-          "enabled": false,
+          "enabled": true,
           "label_override": ""
         },
         {
@@ -827,7 +1037,7 @@
           "params": {
             "keys": "alt+F4"
           },
-          "enabled": false,
+          "enabled": true,
           "label_override": ""
         },
         {
@@ -837,7 +1047,7 @@
             "x": "599",
             "y": "92"
           },
-          "enabled": false,
+          "enabled": true,
           "label_override": ""
         },
         {
@@ -846,7 +1056,7 @@
           "params": {
             "seconds": 3.3
           },
-          "enabled": false,
+          "enabled": true,
           "label_override": ""
         },
         {
@@ -855,7 +1065,7 @@
           "params": {
             "key": "enter"
           },
-          "enabled": false,
+          "enabled": true,
           "label_override": ""
         },
         {
@@ -864,7 +1074,7 @@
           "params": {
             "seconds": 1.0
           },
-          "enabled": false,
+          "enabled": true,
           "label_override": ""
         },
         {
@@ -873,7 +1083,7 @@
           "params": {
             "key": "enter"
           },
-          "enabled": false,
+          "enabled": true,
           "label_override": ""
         },
         {
@@ -882,7 +1092,7 @@
           "params": {
             "seconds": 1.0
           },
-          "enabled": false,
+          "enabled": true,
           "label_override": ""
         },
         {
@@ -891,7 +1101,7 @@
           "params": {
             "key": "enter"
           },
-          "enabled": false,
+          "enabled": true,
           "label_override": ""
         },
         {
@@ -900,7 +1110,7 @@
           "params": {
             "seconds": 1.0
           },
-          "enabled": false,
+          "enabled": true,
           "label_override": ""
         },
         {
@@ -909,7 +1119,7 @@
           "params": {
             "key": "tab"
           },
-          "enabled": false,
+          "enabled": true,
           "label_override": ""
         },
         {
@@ -918,7 +1128,7 @@
           "params": {
             "seconds": 1.0
           },
-          "enabled": false,
+          "enabled": true,
           "label_override": ""
         },
         {
@@ -927,7 +1137,7 @@
           "params": {
             "key": "enter"
           },
-          "enabled": false,
+          "enabled": true,
           "label_override": ""
         },
         {
@@ -936,7 +1146,7 @@
           "params": {
             "seconds": 3.0
           },
-          "enabled": false,
+          "enabled": true,
           "label_override": ""
         },
         {
@@ -945,7 +1155,7 @@
           "params": {
             "key": "alt"
           },
-          "enabled": false,
+          "enabled": true,
           "label_override": ""
         },
         {
@@ -954,7 +1164,7 @@
           "params": {
             "seconds": 1.0
           },
-          "enabled": false,
+          "enabled": true,
           "label_override": ""
         },
         {
@@ -963,7 +1173,7 @@
           "params": {
             "key": "a"
           },
-          "enabled": false,
+          "enabled": true,
           "label_override": ""
         },
         {
@@ -972,7 +1182,7 @@
           "params": {
             "seconds": 1.0
           },
-          "enabled": false,
+          "enabled": true,
           "label_override": ""
         },
         {
@@ -981,7 +1191,7 @@
           "params": {
             "key": "t"
           },
-          "enabled": false,
+          "enabled": true,
           "label_override": ""
         },
         {
@@ -990,7 +1200,7 @@
           "params": {
             "seconds": 1.0
           },
-          "enabled": false,
+          "enabled": true,
           "label_override": ""
         },
         {
@@ -1000,7 +1210,7 @@
             "key": "tab",
             "presses": 2
           },
-          "enabled": false,
+          "enabled": true,
           "label_override": ""
         },
         {
@@ -1009,7 +1219,7 @@
           "params": {
             "keys": "alt+down"
           },
-          "enabled": false,
+          "enabled": true,
           "label_override": ""
         },
         {
@@ -1018,7 +1228,7 @@
           "params": {
             "seconds": 1.0
           },
-          "enabled": false,
+          "enabled": true,
           "label_override": ""
         },
         {
@@ -1027,7 +1237,7 @@
           "params": {
             "keys": "shift+tab"
           },
-          "enabled": false,
+          "enabled": true,
           "label_override": ""
         },
         {
@@ -1036,7 +1246,7 @@
           "params": {
             "keys": "shift+tab"
           },
-          "enabled": false,
+          "enabled": true,
           "label_override": ""
         },
         {
@@ -1045,7 +1255,7 @@
           "params": {
             "keys": "shift+tab"
           },
-          "enabled": false,
+          "enabled": true,
           "label_override": ""
         },
         {
@@ -1054,7 +1264,7 @@
           "params": {
             "key": "space"
           },
-          "enabled": false,
+          "enabled": true,
           "label_override": ""
         },
         {
@@ -1063,7 +1273,7 @@
           "params": {
             "key": "down"
           },
-          "enabled": false,
+          "enabled": true,
           "label_override": ""
         },
         {
@@ -1072,7 +1282,7 @@
           "params": {
             "key": "space"
           },
-          "enabled": false,
+          "enabled": true,
           "label_override": ""
         },
         {
@@ -1081,7 +1291,7 @@
           "params": {
             "key": "enter"
           },
-          "enabled": false,
+          "enabled": true,
           "label_override": ""
         },
         {
@@ -1090,7 +1300,7 @@
           "params": {
             "seconds": 2.0
           },
-          "enabled": false,
+          "enabled": true,
           "label_override": ""
         },
         {
@@ -1099,7 +1309,7 @@
           "params": {
             "keys": "ctrl+a"
           },
-          "enabled": false,
+          "enabled": true,
           "label_override": ""
         },
         {
@@ -1108,7 +1318,7 @@
           "params": {
             "keys": "ctrl+c"
           },
-          "enabled": false,
+          "enabled": true,
           "label_override": ""
         },
         {
@@ -1117,7 +1327,7 @@
           "params": {
             "keys": "shift+F11"
           },
-          "enabled": false,
+          "enabled": true,
           "label_override": ""
         },
         {
@@ -1126,14 +1336,14 @@
           "params": {
             "keys": "ctrl+v"
           },
-          "enabled": false,
+          "enabled": true,
           "label_override": ""
         },
         {
           "step_id": "0836b441",
           "action_type": "delay",
           "params": {},
-          "enabled": false,
+          "enabled": true,
           "label_override": ""
         },
         {
@@ -1142,7 +1352,7 @@
           "params": {
             "key": "alt"
           },
-          "enabled": false,
+          "enabled": true,
           "label_override": ""
         },
         {
@@ -1151,7 +1361,7 @@
           "params": {
             "key": "h"
           },
-          "enabled": false,
+          "enabled": true,
           "label_override": ""
         },
         {
@@ -1160,7 +1370,7 @@
           "params": {
             "key": "o"
           },
-          "enabled": false,
+          "enabled": true,
           "label_override": ""
         },
         {
@@ -1169,7 +1379,7 @@
           "params": {
             "key": "i"
           },
-          "enabled": false,
+          "enabled": true,
           "label_override": ""
         },
         {
@@ -1178,7 +1388,7 @@
           "params": {
             "seconds": 1.0
           },
-          "enabled": false,
+          "enabled": true,
           "label_override": ""
         },
         {
@@ -1187,7 +1397,7 @@
           "params": {
             "key": "alt"
           },
-          "enabled": false,
+          "enabled": true,
           "label_override": ""
         },
         {
@@ -1196,7 +1406,7 @@
           "params": {
             "key": "a"
           },
-          "enabled": false,
+          "enabled": true,
           "label_override": ""
         },
         {
@@ -1206,7 +1416,7 @@
             "key": "s",
             "presses": 2
           },
-          "enabled": false,
+          "enabled": true,
           "label_override": ""
         },
         {
@@ -1215,7 +1425,7 @@
           "params": {
             "seconds": 2.0
           },
-          "enabled": false,
+          "enabled": true,
           "label_override": ""
         },
         {
@@ -1224,7 +1434,7 @@
           "params": {
             "keys": "shift+tab"
           },
-          "enabled": false,
+          "enabled": true,
           "label_override": ""
         },
         {
@@ -1233,7 +1443,7 @@
           "params": {
             "key": "tab"
           },
-          "enabled": false,
+          "enabled": true,
           "label_override": ""
         },
         {
@@ -1242,7 +1452,7 @@
           "params": {
             "key": "f"
           },
-          "enabled": false,
+          "enabled": true,
           "label_override": ""
         },
         {
@@ -1251,7 +1461,7 @@
           "params": {
             "keys": "shift+tab"
           },
-          "enabled": false,
+          "enabled": true,
           "label_override": ""
         },
         {
@@ -1260,7 +1470,7 @@
           "params": {
             "keys": "shift+tab"
           },
-          "enabled": false,
+          "enabled": true,
           "label_override": ""
         },
         {
@@ -1269,7 +1479,7 @@
           "params": {
             "keys": "shift+tab"
           },
-          "enabled": false,
+          "enabled": true,
           "label_override": ""
         },
         {
@@ -1278,7 +1488,7 @@
           "params": {
             "keys": "shift+tab"
           },
-          "enabled": false,
+          "enabled": true,
           "label_override": ""
         },
         {
@@ -1287,7 +1497,7 @@
           "params": {
             "keys": "shift+tab"
           },
-          "enabled": false,
+          "enabled": true,
           "label_override": ""
         },
         {
@@ -1296,7 +1506,7 @@
           "params": {
             "keys": "shift+tab"
           },
-          "enabled": false,
+          "enabled": true,
           "label_override": ""
         },
         {
@@ -1305,7 +1515,7 @@
           "params": {
             "key": "space"
           },
-          "enabled": false,
+          "enabled": true,
           "label_override": ""
         },
         {
@@ -1314,7 +1524,7 @@
           "params": {
             "keys": "shift+tab"
           },
-          "enabled": false,
+          "enabled": true,
           "label_override": ""
         },
         {
@@ -1323,7 +1533,7 @@
           "params": {
             "keys": "shift+tab"
           },
-          "enabled": false,
+          "enabled": true,
           "label_override": ""
         },
         {
@@ -1332,7 +1542,7 @@
           "params": {
             "keys": "shift+tab"
           },
-          "enabled": false,
+          "enabled": true,
           "label_override": ""
         },
         {
@@ -1341,7 +1551,7 @@
           "params": {
             "key": "tab"
           },
-          "enabled": false,
+          "enabled": true,
           "label_override": ""
         },
         {
@@ -1350,7 +1560,7 @@
           "params": {
             "key": "u"
           },
-          "enabled": false,
+          "enabled": true,
           "label_override": ""
         },
         {
@@ -1359,7 +1569,7 @@
           "params": {
             "key": "enter"
           },
-          "enabled": false,
+          "enabled": true,
           "label_override": ""
         },
         {
@@ -1368,7 +1578,7 @@
           "params": {
             "seconds": 1.0
           },
-          "enabled": false,
+          "enabled": true,
           "label_override": ""
         },
         {
@@ -1377,7 +1587,7 @@
           "params": {
             "key": "enter"
           },
-          "enabled": false,
+          "enabled": true,
           "label_override": ""
         },
         {
@@ -1386,7 +1596,7 @@
           "params": {
             "seconds": 1.0
           },
-          "enabled": false,
+          "enabled": true,
           "label_override": ""
         },
         {
@@ -1395,7 +1605,7 @@
           "params": {
             "key": "alt"
           },
-          "enabled": false,
+          "enabled": true,
           "label_override": ""
         },
         {
@@ -1404,7 +1614,7 @@
           "params": {
             "key": "n"
           },
-          "enabled": false,
+          "enabled": true,
           "label_override": ""
         },
         {
@@ -1413,7 +1623,7 @@
           "params": {
             "key": "v"
           },
-          "enabled": false,
+          "enabled": true,
           "label_override": ""
         },
         {
@@ -1422,7 +1632,7 @@
           "params": {
             "key": "enter"
           },
-          "enabled": false,
+          "enabled": true,
           "label_override": ""
         },
         {
@@ -1431,7 +1641,7 @@
           "params": {
             "seconds": 1.3
           },
-          "enabled": false,
+          "enabled": true,
           "label_override": ""
         },
         {
@@ -1440,7 +1650,7 @@
           "params": {
             "key": "enter"
           },
-          "enabled": false,
+          "enabled": true,
           "label_override": ""
         },
         {
@@ -1449,7 +1659,7 @@
           "params": {
             "seconds": 1.3
           },
-          "enabled": false,
+          "enabled": true,
           "label_override": ""
         },
         {
@@ -1458,7 +1668,7 @@
           "params": {
             "keys": "shift+F6"
           },
-          "enabled": false,
+          "enabled": true,
           "label_override": ""
         },
         {
@@ -1467,7 +1677,7 @@
           "params": {
             "keys": "shift+F6"
           },
-          "enabled": false,
+          "enabled": true,
           "label_override": ""
         },
         {
@@ -1476,7 +1686,7 @@
           "params": {
             "keys": "shift+F6"
           },
-          "enabled": false,
+          "enabled": true,
           "label_override": ""
         },
         {
@@ -1485,7 +1695,7 @@
           "params": {
             "text": "Material"
           },
-          "enabled": false,
+          "enabled": true,
           "label_override": ""
         },
         {
@@ -1495,7 +1705,7 @@
             "key": "tab",
             "presses": 2
           },
-          "enabled": false,
+          "enabled": true,
           "label_override": ""
         },
         {
@@ -1504,7 +1714,7 @@
           "params": {
             "key": "space"
           },
-          "enabled": false,
+          "enabled": true,
           "label_override": ""
         },
         {
@@ -1514,7 +1724,7 @@
             "key": "F6",
             "presses": 3
           },
-          "enabled": false,
+          "enabled": true,
           "label_override": ""
         },
         {
@@ -1523,7 +1733,7 @@
           "params": {
             "seconds": 3.0
           },
-          "enabled": false,
+          "enabled": true,
           "label_override": ""
         },
         {
@@ -1532,7 +1742,7 @@
           "params": {
             "key": "down"
           },
-          "enabled": false,
+          "enabled": true,
           "label_override": ""
         },
         {
@@ -1541,7 +1751,7 @@
           "params": {
             "key": "F8"
           },
-          "enabled": false,
+          "enabled": true,
           "label_override": ""
         },
         {
@@ -1550,7 +1760,7 @@
           "params": {
             "keys": "ctrl+down"
           },
-          "enabled": false,
+          "enabled": true,
           "label_override": ""
         },
         {
@@ -1559,7 +1769,7 @@
           "params": {
             "keys": "up"
           },
-          "enabled": false,
+          "enabled": true,
           "label_override": ""
         },
         {
@@ -1568,7 +1778,7 @@
           "params": {
             "key": "escape"
           },
-          "enabled": false,
+          "enabled": true,
           "label_override": ""
         },
         {
@@ -1577,16 +1787,16 @@
           "params": {
             "keys": "ctrl+c"
           },
-          "enabled": false,
+          "enabled": true,
           "label_override": ""
         },
         {
-          "step_id": "6156b48b",
+          "step_id": "6cc636aa",
           "action_type": "hotkey",
           "params": {
             "keys": "alt+tab"
           },
-          "enabled": false,
+          "enabled": true,
           "label_override": ""
         },
         {
@@ -1595,7 +1805,7 @@
           "params": {
             "seconds": 1.0
           },
-          "enabled": false,
+          "enabled": true,
           "label_override": ""
         },
         {
@@ -1604,7 +1814,7 @@
           "params": {
             "keys": "shift+F3"
           },
-          "enabled": false,
+          "enabled": true,
           "label_override": ""
         },
         {
@@ -1613,7 +1823,7 @@
           "params": {
             "seconds": 1.0
           },
-          "enabled": false,
+          "enabled": true,
           "label_override": ""
         },
         {
@@ -1622,7 +1832,7 @@
           "params": {
             "keys": "shift+F3"
           },
-          "enabled": false,
+          "enabled": true,
           "label_override": ""
         },
         {
@@ -1631,16 +1841,24 @@
           "params": {
             "seconds": 2.0
           },
-          "enabled": false,
+          "enabled": true,
           "label_override": ""
-        },
+        }
+      ]
+    },
+    {
+      "group_id": "74073961",
+      "title": "YYFP",
+      "enabled": true,
+      "collapsed": true,
+      "steps": [
         {
           "step_id": "4a4f1eb0",
           "action_type": "type_text",
           "params": {
             "text": "YYFP"
           },
-          "enabled": false,
+          "enabled": true,
           "label_override": ""
         },
         {
@@ -1649,7 +1867,7 @@
           "params": {
             "key": "enter"
           },
-          "enabled": false,
+          "enabled": true,
           "label_override": ""
         },
         {
@@ -1658,7 +1876,7 @@
           "params": {
             "seconds": 3.0
           },
-          "enabled": false,
+          "enabled": true,
           "label_override": ""
         },
         {
@@ -1668,7 +1886,7 @@
             "key": "tab",
             "presses": 2
           },
-          "enabled": false,
+          "enabled": true,
           "label_override": ""
         },
         {
@@ -1677,7 +1895,7 @@
           "params": {
             "key": "enter"
           },
-          "enabled": false,
+          "enabled": true,
           "label_override": ""
         },
         {
@@ -1686,7 +1904,7 @@
           "params": {
             "seconds": 3.3
           },
-          "enabled": false,
+          "enabled": true,
           "label_override": ""
         },
         {
@@ -1695,16 +1913,16 @@
           "params": {
             "keys": "shift+F12"
           },
-          "enabled": false,
+          "enabled": true,
           "label_override": ""
         },
         {
-          "step_id": "e12b4e2e",
+          "step_id": "c55e9f9a",
           "action_type": "delay",
           "params": {
-            "seconds": 9.3
+            "seconds": 12.0
           },
-          "enabled": false,
+          "enabled": true,
           "label_override": ""
         },
         {
@@ -1713,7 +1931,7 @@
           "params": {
             "key": "F8"
           },
-          "enabled": false,
+          "enabled": true,
           "label_override": ""
         },
         {
@@ -1722,7 +1940,7 @@
           "params": {
             "seconds": 3.0
           },
-          "enabled": false,
+          "enabled": true,
           "label_override": ""
         },
         {
@@ -1731,7 +1949,7 @@
           "params": {
             "keys": "ctrl+tab"
           },
-          "enabled": false,
+          "enabled": true,
           "label_override": ""
         },
         {
@@ -1740,14 +1958,14 @@
           "params": {
             "keys": "shift+tab"
           },
-          "enabled": false,
+          "enabled": true,
           "label_override": ""
         },
         {
           "step_id": "9e4361e6",
           "action_type": "delay",
           "params": {},
-          "enabled": false,
+          "enabled": true,
           "label_override": ""
         },
         {
@@ -1756,7 +1974,7 @@
           "params": {
             "keys": "ctrl+a"
           },
-          "enabled": false,
+          "enabled": true,
           "label_override": ""
         },
         {
@@ -1765,7 +1983,7 @@
           "params": {
             "text": "S2"
           },
-          "enabled": false,
+          "enabled": true,
           "label_override": ""
         },
         {
@@ -1774,7 +1992,7 @@
           "params": {
             "keys": "shift+tab"
           },
-          "enabled": false,
+          "enabled": true,
           "label_override": ""
         },
         {
@@ -1783,7 +2001,7 @@
           "params": {
             "keys": "shift+tab"
           },
-          "enabled": false,
+          "enabled": true,
           "label_override": ""
         },
         {
@@ -1792,7 +2010,7 @@
           "params": {
             "keys": "shift+tab"
           },
-          "enabled": false,
+          "enabled": true,
           "label_override": ""
         },
         {
@@ -1801,7 +2019,7 @@
           "params": {
             "keys": "shift+tab"
           },
-          "enabled": false,
+          "enabled": true,
           "label_override": ""
         },
         {
@@ -1810,7 +2028,7 @@
           "params": {
             "key": "space"
           },
-          "enabled": false,
+          "enabled": true,
           "label_override": ""
         },
         {
@@ -1819,7 +2037,7 @@
           "params": {
             "keys": "ctrl+tab"
           },
-          "enabled": false,
+          "enabled": true,
           "label_override": ""
         },
         {
@@ -1829,7 +2047,7 @@
             "key": "tab",
             "presses": 2
           },
-          "enabled": false,
+          "enabled": true,
           "label_override": ""
         },
         {
@@ -1838,7 +2056,7 @@
           "params": {
             "key": "down"
           },
-          "enabled": false,
+          "enabled": true,
           "label_override": ""
         },
         {
@@ -1847,7 +2065,7 @@
           "params": {
             "key": "space"
           },
-          "enabled": false,
+          "enabled": true,
           "label_override": ""
         },
         {
@@ -1856,7 +2074,7 @@
           "params": {
             "key": "down"
           },
-          "enabled": false,
+          "enabled": true,
           "label_override": ""
         },
         {
@@ -1865,14 +2083,14 @@
           "params": {
             "key": "space"
           },
-          "enabled": false,
+          "enabled": true,
           "label_override": ""
         },
         {
           "step_id": "fbf1649f",
           "action_type": "delay",
           "params": {},
-          "enabled": false,
+          "enabled": true,
           "label_override": ""
         },
         {
@@ -1881,16 +2099,17 @@
           "params": {
             "key": "F8"
           },
-          "enabled": false,
+          "enabled": true,
           "label_override": ""
         },
         {
-          "step_id": "4f06583c",
-          "action_type": "delay",
+          "step_id": "94655948",
+          "action_type": "sap_wait_screen",
           "params": {
-            "seconds": 550.0
+            "timeout": 1000.0,
+            "wait_after": 1.0
           },
-          "enabled": false,
+          "enabled": true,
           "label_override": ""
         },
         {
@@ -1899,7 +2118,7 @@
           "params": {
             "keys": "shift+F6"
           },
-          "enabled": false,
+          "enabled": true,
           "label_override": ""
         },
         {
@@ -1908,7 +2127,7 @@
           "params": {
             "seconds": 4.0
           },
-          "enabled": false,
+          "enabled": true,
           "label_override": ""
         },
         {
@@ -1917,7 +2136,7 @@
           "params": {
             "keys": "win+r"
           },
-          "enabled": false,
+          "enabled": true,
           "label_override": ""
         },
         {
@@ -1926,7 +2145,7 @@
           "params": {
             "seconds": 2.0
           },
-          "enabled": false,
+          "enabled": true,
           "label_override": ""
         },
         {
@@ -1935,7 +2154,7 @@
           "params": {
             "text": "powershell"
           },
-          "enabled": false,
+          "enabled": true,
           "label_override": ""
         },
         {
@@ -1944,7 +2163,7 @@
           "params": {
             "key": "enter"
           },
-          "enabled": false,
+          "enabled": true,
           "label_override": ""
         },
         {
@@ -1953,7 +2172,7 @@
           "params": {
             "seconds": 4.3
           },
-          "enabled": false,
+          "enabled": true,
           "label_override": ""
         },
         {
@@ -1962,7 +2181,7 @@
           "params": {
             "text": "Set-Clipboard -Value (\"C:\\Users\\z0323462\\Downloads\\ExcelRPA\\PFEP\\YYFP_\" + (Get-Date -Format \"dd-MM-yyyy_HH-mm\") + \".XLS\")"
           },
-          "enabled": false,
+          "enabled": true,
           "label_override": ""
         },
         {
@@ -1971,7 +2190,7 @@
           "params": {
             "key": "enter"
           },
-          "enabled": false,
+          "enabled": true,
           "label_override": ""
         },
         {
@@ -1980,7 +2199,7 @@
           "params": {
             "seconds": 2.0
           },
-          "enabled": false,
+          "enabled": true,
           "label_override": ""
         },
         {
@@ -1989,7 +2208,7 @@
           "params": {
             "keys": "alt+F4"
           },
-          "enabled": false,
+          "enabled": true,
           "label_override": ""
         },
         {
@@ -1998,7 +2217,7 @@
           "params": {
             "seconds": 2.0
           },
-          "enabled": false,
+          "enabled": true,
           "label_override": ""
         },
         {
@@ -2007,7 +2226,7 @@
           "params": {
             "keys": "ctrl+v"
           },
-          "enabled": false,
+          "enabled": true,
           "label_override": ""
         },
         {
@@ -2016,16 +2235,17 @@
           "params": {
             "key": "enter"
           },
-          "enabled": false,
+          "enabled": true,
           "label_override": ""
         },
         {
-          "step_id": "720e6f8c",
-          "action_type": "delay",
+          "step_id": "e4fc1693",
+          "action_type": "sap_wait_screen",
           "params": {
-            "seconds": 6.0
+            "timeout": 100.0,
+            "wait_after": 1.0
           },
-          "enabled": false,
+          "enabled": true,
           "label_override": ""
         },
         {
@@ -2034,7 +2254,7 @@
           "params": {
             "key": "left"
           },
-          "enabled": false,
+          "enabled": true,
           "label_override": ""
         },
         {
@@ -2043,16 +2263,17 @@
           "params": {
             "key": "enter"
           },
-          "enabled": false,
+          "enabled": true,
           "label_override": ""
         },
         {
-          "step_id": "278feee8",
-          "action_type": "delay",
+          "step_id": "8192efe4",
+          "action_type": "sap_wait_screen",
           "params": {
-            "seconds": 5.0
+            "timeout": 100.0,
+            "wait_after": 1.0
           },
-          "enabled": false,
+          "enabled": true,
           "label_override": ""
         },
         {
@@ -2061,7 +2282,7 @@
           "params": {
             "key": "tab"
           },
-          "enabled": false,
+          "enabled": true,
           "label_override": ""
         },
         {
@@ -2070,7 +2291,7 @@
           "params": {
             "key": "enter"
           },
-          "enabled": false,
+          "enabled": true,
           "label_override": ""
         },
         {
@@ -2079,34 +2300,139 @@
           "params": {
             "seconds": 6.0
           },
-          "enabled": false,
+          "enabled": true,
           "label_override": ""
         },
         {
-          "step_id": "8c6dd9dc",
+          "step_id": "3d728b95",
+          "action_type": "hotkey",
+          "params": {
+            "keys": "alt+tab"
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "875a42e9",
+          "action_type": "delay",
+          "params": {},
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "3c70a140",
+          "action_type": "hotkey",
+          "params": {
+            "keys": "ctrl+s"
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "9281d643",
+          "action_type": "hotkey",
+          "params": {
+            "keys": "alt+F4"
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "463bf4b3",
+          "action_type": "delay",
+          "params": {
+            "seconds": 5.0
+          },
+          "enabled": true,
+          "label_override": ""
+        }
+      ]
+    },
+    {
+      "group_id": "e2a02080",
+      "title": "Cerrar SAP",
+      "enabled": true,
+      "collapsed": true,
+      "steps": [
+        {
+          "step_id": "f615b8b8",
           "action_type": "hotkey",
           "params": {
             "keys": "win+r"
           },
-          "enabled": false,
+          "enabled": true,
           "label_override": ""
         },
         {
-          "step_id": "8fb4c4b8",
+          "step_id": "3c7d4e77",
           "action_type": "delay",
           "params": {
             "seconds": 2.0
           },
-          "enabled": false,
+          "enabled": true,
           "label_override": ""
         },
         {
-          "step_id": "7e52d718",
+          "step_id": "c5bb48f9",
+          "action_type": "type_text",
+          "params": {
+            "text": "powershell"
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "0a804e46",
+          "action_type": "key_press",
+          "params": {
+            "key": "enter"
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "60020c73",
+          "action_type": "delay",
+          "params": {
+            "seconds": 2.0
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "db4dc447",
+          "action_type": "type_text",
+          "params": {
+            "text": "Stop-Process -Name saplogon -Force -ErrorAction SilentlyContinue"
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "515d9846",
+          "action_type": "key_press",
+          "params": {
+            "key": "enter"
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "a4989c9d",
+          "action_type": "delay",
+          "params": {
+            "seconds": 2.0
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "90c0323c",
           "action_type": "hotkey",
           "params": {
-            "keys": "ctrl+v"
+            "keys": "alt+F4"
           },
-          "enabled": false,
+          "enabled": true,
           "label_override": ""
         }
       ]

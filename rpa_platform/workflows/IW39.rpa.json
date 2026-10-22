@@ -600,7 +600,7 @@
       "group_id": "2f61e315",
       "title": "Descargar Excel",
       "enabled": true,
-      "collapsed": false,
+      "collapsed": true,
       "steps": [
         {
           "step_id": "b17f9ee9",
@@ -869,7 +869,7 @@
       "group_id": "09ae9c04",
       "title": "Subir excel al Data Hub",
       "enabled": true,
-      "collapsed": false,
+      "collapsed": true,
       "steps": [
         {
           "step_id": "983671a8",
@@ -959,7 +959,7 @@
       "group_id": "3bfa71fb",
       "title": "Cerrar todo",
       "enabled": true,
-      "collapsed": false,
+      "collapsed": true,
       "steps": [
         {
           "step_id": "3fa5d2da",
