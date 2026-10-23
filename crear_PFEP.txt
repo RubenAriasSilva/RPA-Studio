@@ -1,30 +1,20 @@
-$ruta = "C:\Temp\PFEP.xlsx"
+$ruta = "C:\Users\z0323462\Downloads\ExcelRPA\PFEP\PFEP_" + (Get-Date -Format "dd-MM-yyyy_HH-mm") + ".xlsx"
 $hojas = @("ZCO022","0793","YYFP","PFEP","9001-1003-1306","WIP","REQUERIR")
-
 $excel = New-Object -ComObject Excel.Application
 $excel.Visible = $false
 $excel.DisplayAlerts = $false
 $libro = $excel.Workbooks.Add()
-
-# Etiqueta de confidencialidad "Internal sub1" (obligatoria; sin ella SaveAs no guarda)
 $info = $libro.SensitivityLabel.CreateLabelInfo()
 $info.LabelId = "134277c1-31d4-4dba-9248-3ba93a3f3112"
 $info.SiteId = "eb70b763-b6d7-4486-8555-8831709a784e"
 $info.AssignmentMethod = 1
 $libro.SensitivityLabel.SetLabel($info, $info)
-
-# Dejar exactamente 7 hojas
 while ($libro.Worksheets.Count -lt $hojas.Count) { $libro.Worksheets.Add([Type]::Missing, $libro.Worksheets.Item($libro.Worksheets.Count)) | Out-Null }
 while ($libro.Worksheets.Count -gt $hojas.Count) { $libro.Worksheets.Item($libro.Worksheets.Count).Delete() }
-
-# Renombrar en orden
 for ($i = 0; $i -lt $hojas.Count; $i++) { $libro.Worksheets.Item($i + 1).Name = $hojas[$i] }
 $libro.Worksheets.Item(1).Activate()
-
-$libro.SaveAs($ruta, 51)   # 51 = formato .xlsx
+$libro.SaveAs($ruta, 51)
 $libro.Close()
 $excel.Quit()
 [System.Runtime.InteropServices.Marshal]::ReleaseComObject($excel) | Out-Null
-
-# Abrir el Excel creado
 Invoke-Item $ruta

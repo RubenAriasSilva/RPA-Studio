@@ -2352,7 +2352,7 @@
       "group_id": "e2a02080",
       "title": "Cerrar SAP",
       "enabled": false,
-      "collapsed": false,
+      "collapsed": true,
       "steps": [
         {
           "step_id": "f615b8b8",
@@ -2438,11 +2438,1687 @@
       ]
     },
     {
-      "group_id": "fc992c27",
+      "group_id": "cd32fb8d",
       "title": "Crear PFEP",
       "enabled": true,
-      "collapsed": false,
-      "steps": []
+      "collapsed": true,
+      "steps": [
+        {
+          "step_id": "76222006",
+          "action_type": "hotkey",
+          "params": {
+            "keys": "win+r"
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "c8800011",
+          "action_type": "delay",
+          "params": {
+            "seconds": 2.0
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "5e678283",
+          "action_type": "type_text",
+          "params": {
+            "text": "powershell"
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "7c8bac40",
+          "action_type": "key_press",
+          "params": {
+            "key": "enter"
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "6ed1d40d",
+          "action_type": "delay",
+          "params": {
+            "seconds": 2.0
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "c009812f",
+          "action_type": "type_text",
+          "params": {
+            "text": "$ruta = \"C:\\Users\\z0323462\\Downloads\\ExcelRPA\\PFEP\\PFEP_\" + (Get-Date -Format \"dd-MM-yyyy_HH-mm\") + \".xlsx\"\n$hojas = @(\"ZCO022\",\"0793\",\"YYFP\",\"PFEP\",\"9001-1003-1306\",\"WIP\",\"REQUERIR\")\n$excel = New-Object -ComObject Excel.Application\n$excel.Visible = $false\n$excel.DisplayAlerts = $false\n$libro = $excel.Workbooks.Add()\n$info = $libro.SensitivityLabel.CreateLabelInfo()\n$info.LabelId = \"134277c1-31d4-4dba-9248-3ba93a3f3112\"\n$info.SiteId = \"eb70b763-b6d7-4486-8555-8831709a784e\"\n$info.AssignmentMethod = 1\n$libro.SensitivityLabel.SetLabel($info, $info)\nwhile ($libro.Worksheets.Count -lt $hojas.Count) { $libro.Worksheets.Add([Type]::Missing, $libro.Worksheets.Item($libro.Worksheets.Count)) | Out-Null }\nwhile ($libro.Worksheets.Count -gt $hojas.Count) { $libro.Worksheets.Item($libro.Worksheets.Count).Delete() }\nfor ($i = 0; $i -lt $hojas.Count; $i++) { $libro.Worksheets.Item($i + 1).Name = $hojas[$i] }\n$libro.Worksheets.Item(1).Activate()\n$libro.SaveAs($ruta, 51)\n$libro.Close()\n$excel.Quit()\n[System.Runtime.InteropServices.Marshal]::ReleaseComObject($excel) | Out-Null\nInvoke-Item $ruta\n"
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "977f4116",
+          "action_type": "wait_for_window",
+          "params": {
+            "timeout": 60.0,
+            "process_name": "excel.exe"
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "da5634c7",
+          "action_type": "delay",
+          "params": {
+            "seconds": 2.0
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "b8a1ca95",
+          "action_type": "hotkey",
+          "params": {
+            "keys": "alt+tab"
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "f961b0d9",
+          "action_type": "delay",
+          "params": {},
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "def3aebd",
+          "action_type": "hotkey",
+          "params": {
+            "keys": "alt+F4"
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "c940c158",
+          "action_type": "delay",
+          "params": {},
+          "enabled": true,
+          "label_override": ""
+        }
+      ]
+    },
+    {
+      "group_id": "66878455",
+      "title": "PFEP - ZCO022",
+      "enabled": true,
+      "collapsed": true,
+      "steps": [
+        {
+          "step_id": "cbf540bc",
+          "action_type": "hotkey",
+          "params": {
+            "keys": "win+r"
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "5bb0a820",
+          "action_type": "type_text",
+          "params": {
+            "text": "\"C:\\Users\\z0323462\\Downloads\\ExcelRPA\\PFEP\\ZCO022_23-10-2026_09-16.XLSX\"\n"
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "de905037",
+          "action_type": "delay",
+          "params": {
+            "seconds": 7.0
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "bb3772d7",
+          "action_type": "hotkey",
+          "params": {
+            "keys": "ctrl+a"
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "d02138c6",
+          "action_type": "hotkey",
+          "params": {
+            "keys": "ctrl+c"
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "1da7ef9c",
+          "action_type": "hotkey",
+          "params": {
+            "keys": "alt+tab"
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "e93b211d",
+          "action_type": "delay",
+          "params": {
+            "seconds": 0.5
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "55d45a8d",
+          "action_type": "hotkey",
+          "params": {
+            "keys": "ctrl+v"
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "1b9de0a5",
+          "action_type": "delay",
+          "params": {
+            "seconds": 0.5
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "909e3bcb",
+          "action_type": "key_press",
+          "params": {
+            "key": "alt"
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "45ddb7de",
+          "action_type": "key_press",
+          "params": {
+            "key": "h"
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "c372bfea",
+          "action_type": "key_press",
+          "params": {
+            "key": "o"
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "c1261415",
+          "action_type": "key_press",
+          "params": {
+            "key": "i"
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "0bc9c93b",
+          "action_type": "delay",
+          "params": {
+            "seconds": 0.5
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "1c955a5d",
+          "action_type": "key_press",
+          "params": {
+            "key": "alt"
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "ce953a7e",
+          "action_type": "key_press",
+          "params": {
+            "key": "a"
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "1f27fc1c",
+          "action_type": "key_press",
+          "params": {
+            "key": "t"
+          },
+          "enabled": true,
+          "label_override": ""
+        }
+      ]
+    },
+    {
+      "group_id": "b9bfb359",
+      "title": "PFEP - 0793",
+      "enabled": true,
+      "collapsed": true,
+      "steps": [
+        {
+          "step_id": "0d0f988f",
+          "action_type": "key_press",
+          "params": {
+            "key": "right",
+            "presses": 4
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "ce0c488e",
+          "action_type": "hotkey",
+          "params": {
+            "keys": "alt+down"
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "1f405f16",
+          "action_type": "key_press",
+          "params": {
+            "key": "tab",
+            "presses": 5,
+            "interval": 0.1
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "4bb5b910",
+          "action_type": "key_press",
+          "params": {
+            "key": "space"
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "a2a8c8d5",
+          "action_type": "hotkey",
+          "params": {
+            "keys": "shift+tab"
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "1a22d9e7",
+          "action_type": "type_text",
+          "params": {
+            "text": "0793"
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "8a4766f7",
+          "action_type": "key_press",
+          "params": {
+            "key": "enter"
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "67e93f25",
+          "action_type": "delay",
+          "params": {},
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "3f6f6e76",
+          "action_type": "hotkey",
+          "params": {
+            "keys": "ctrl+a"
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "c8259d72",
+          "action_type": "hotkey",
+          "params": {
+            "keys": "ctrl+c"
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "47453808",
+          "action_type": "hotkey",
+          "params": {
+            "keys": "ctrl+PgDn"
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "08aecdd0",
+          "action_type": "hotkey",
+          "params": {
+            "keys": "ctrl+v"
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "3aa317f6",
+          "action_type": "delay",
+          "params": {
+            "seconds": 0.5
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "a3ce86eb",
+          "action_type": "key_press",
+          "params": {
+            "key": "alt"
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "296d0caf",
+          "action_type": "key_press",
+          "params": {
+            "key": "h"
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "28b75ff7",
+          "action_type": "key_press",
+          "params": {
+            "key": "o"
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "ca7387da",
+          "action_type": "key_press",
+          "params": {
+            "key": "i"
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "1714b65c",
+          "action_type": "delay",
+          "params": {
+            "seconds": 0.5
+          },
+          "enabled": true,
+          "label_override": ""
+        }
+      ]
+    },
+    {
+      "group_id": "a8a32554",
+      "title": "PFEP - YYFP",
+      "enabled": true,
+      "collapsed": true,
+      "steps": [
+        {
+          "step_id": "dd6e073f",
+          "action_type": "hotkey",
+          "params": {
+            "keys": "ctrl+PgDn"
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "6e98df8f",
+          "action_type": "hotkey",
+          "params": {
+            "keys": "alt+tab"
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "35ffbdb0",
+          "action_type": "delay",
+          "params": {
+            "seconds": 0.5
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "5917b58b",
+          "action_type": "hotkey",
+          "params": {
+            "keys": "alt+F4"
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "b9e17c47",
+          "action_type": "delay",
+          "params": {},
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "95dccbeb",
+          "action_type": "hotkey",
+          "params": {
+            "keys": "win+r"
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "19c29c11",
+          "action_type": "type_text",
+          "params": {
+            "text": "\"C:\\Users\\z0323462\\Downloads\\ExcelRPA\\PFEP\\YYFP_23-10-2026_09-20.XLS\"\n"
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "dd4d8f55",
+          "action_type": "delay",
+          "params": {
+            "seconds": 7.0
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "526c20fa",
+          "action_type": "hotkey",
+          "params": {
+            "keys": "ctrl+a"
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "2251b234",
+          "action_type": "hotkey",
+          "params": {
+            "keys": "ctrl+c"
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "6e0dfa8d",
+          "action_type": "hotkey",
+          "params": {
+            "keys": "alt+tab"
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "8d033435",
+          "action_type": "delay",
+          "params": {
+            "seconds": 0.5
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "a73a1e8e",
+          "action_type": "hotkey",
+          "params": {
+            "keys": "ctrl+v"
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "7138cd5e",
+          "action_type": "delay",
+          "params": {
+            "seconds": 0.5
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "ad94c597",
+          "action_type": "key_press",
+          "params": {
+            "key": "alt"
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "19df7d7b",
+          "action_type": "key_press",
+          "params": {
+            "key": "h"
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "cc473a1c",
+          "action_type": "key_press",
+          "params": {
+            "key": "o"
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "a30510b5",
+          "action_type": "key_press",
+          "params": {
+            "key": "i"
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "3d7edd99",
+          "action_type": "delay",
+          "params": {
+            "seconds": 0.5
+          },
+          "enabled": true,
+          "label_override": ""
+        }
+      ]
+    },
+    {
+      "group_id": "4ae1808c",
+      "title": "PFEP - 9001-1003-1306",
+      "enabled": true,
+      "collapsed": true,
+      "steps": [
+        {
+          "step_id": "12da9edc",
+          "action_type": "hotkey",
+          "params": {
+            "keys": "ctrl+PgUp"
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "ce777ceb",
+          "action_type": "hotkey",
+          "params": {
+            "keys": "ctrl+PgUp"
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "3b327743",
+          "action_type": "key_press",
+          "params": {
+            "key": "home"
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "e43b09b5",
+          "action_type": "key_press",
+          "params": {
+            "key": "right",
+            "presses": 4
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "ebc517c4",
+          "action_type": "hotkey",
+          "params": {
+            "keys": "alt+down"
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "0ba8c805",
+          "action_type": "key_press",
+          "params": {
+            "key": "tab",
+            "presses": 5,
+            "interval": 0.1
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "832f4ce5",
+          "action_type": "key_press",
+          "params": {
+            "key": "space",
+            "presses": 2
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "e492da8c",
+          "action_type": "hotkey",
+          "params": {
+            "keys": "shift+tab"
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "f68e2f47",
+          "action_type": "type_text",
+          "params": {
+            "text": "9001"
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "dc3e7e0b",
+          "action_type": "key_press",
+          "params": {
+            "key": "enter"
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "c0def391",
+          "action_type": "delay",
+          "params": {
+            "seconds": 1.0
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "8a241050",
+          "action_type": "hotkey",
+          "params": {
+            "keys": "alt+down"
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "68496053",
+          "action_type": "key_press",
+          "params": {
+            "key": "tab",
+            "presses": 4,
+            "interval": 0.1
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "f8a2d831",
+          "action_type": "type_text",
+          "params": {
+            "text": "1003"
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "2a1301dc",
+          "action_type": "delay",
+          "params": {
+            "seconds": 1.0
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "618247b7",
+          "action_type": "key_press",
+          "params": {
+            "key": "down",
+            "presses": 3
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "cbbd7518",
+          "action_type": "delay",
+          "params": {
+            "seconds": 0.5
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "85b378a0",
+          "action_type": "key_press",
+          "params": {
+            "key": "space"
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "24208b98",
+          "action_type": "delay",
+          "params": {
+            "seconds": 0.5
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "583b85bb",
+          "action_type": "key_press",
+          "params": {
+            "key": "enter"
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "74b2e135",
+          "action_type": "delay",
+          "params": {},
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "f192d813",
+          "action_type": "delay",
+          "params": {
+            "seconds": 1.0
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "e87c95e6",
+          "action_type": "hotkey",
+          "params": {
+            "keys": "alt+down"
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "ed9e9cb1",
+          "action_type": "key_press",
+          "params": {
+            "key": "tab",
+            "presses": 4,
+            "interval": 0.1
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "e881e942",
+          "action_type": "type_text",
+          "params": {
+            "text": "1306"
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "f2d59825",
+          "action_type": "delay",
+          "params": {
+            "seconds": 1.0
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "44bf5d36",
+          "action_type": "key_press",
+          "params": {
+            "key": "down",
+            "presses": 3
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "6ae03bb8",
+          "action_type": "delay",
+          "params": {
+            "seconds": 0.5
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "9f8eb722",
+          "action_type": "key_press",
+          "params": {
+            "key": "space"
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "4c4ed8a1",
+          "action_type": "delay",
+          "params": {
+            "seconds": 0.5
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "cf7c6b95",
+          "action_type": "key_press",
+          "params": {
+            "key": "enter"
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "7e04392c",
+          "action_type": "delay",
+          "params": {},
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "deed4ea7",
+          "action_type": "hotkey",
+          "params": {
+            "keys": "ctrl+a"
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "74a7ee80",
+          "action_type": "hotkey",
+          "params": {
+            "keys": "ctrl+c"
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "24c356bc",
+          "action_type": "delay",
+          "params": {},
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "024228b8",
+          "action_type": "hotkey",
+          "params": {
+            "keys": "ctrl+PgDn"
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "3fd76cce",
+          "action_type": "hotkey",
+          "params": {
+            "keys": "ctrl+PgDn"
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "a1c95042",
+          "action_type": "hotkey",
+          "params": {
+            "keys": "ctrl+PgDn"
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "1f012b01",
+          "action_type": "hotkey",
+          "params": {
+            "keys": "ctrl+PgDn"
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "3f240fd1",
+          "action_type": "delay",
+          "params": {},
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "ef4b8f22",
+          "action_type": "hotkey",
+          "params": {
+            "keys": "ctrl+v"
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "dc09fc84",
+          "action_type": "delay",
+          "params": {
+            "seconds": 0.5
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "48cf2f84",
+          "action_type": "key_press",
+          "params": {
+            "key": "alt"
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "3df0ef21",
+          "action_type": "key_press",
+          "params": {
+            "key": "h"
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "18936175",
+          "action_type": "key_press",
+          "params": {
+            "key": "o"
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "d3a5f632",
+          "action_type": "key_press",
+          "params": {
+            "key": "i"
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "cd130943",
+          "action_type": "delay",
+          "params": {
+            "seconds": 0.5
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "4f197a34",
+          "action_type": "hotkey",
+          "params": {
+            "keys": "ctrl+tab"
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "2a6a7bba",
+          "action_type": "delay",
+          "params": {
+            "seconds": 0.5
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "8ec61d9e",
+          "action_type": "hotkey",
+          "params": {
+            "keys": "alt+F4"
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "6ebf9a74",
+          "action_type": "delay",
+          "params": {
+            "seconds": 0.5
+          },
+          "enabled": true,
+          "label_override": ""
+        }
+      ]
+    },
+    {
+      "group_id": "fc992c27",
+      "title": "PFEP - WIP",
+      "enabled": true,
+      "collapsed": true,
+      "steps": [
+        {
+          "step_id": "dff6bc30",
+          "action_type": "hotkey",
+          "params": {
+            "keys": "ctrl+PgUp"
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "d172c6aa",
+          "action_type": "hotkey",
+          "params": {
+            "keys": "ctrl+PgUp"
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "d7a1feb6",
+          "action_type": "hotkey",
+          "params": {
+            "keys": "ctrl+PgUp"
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "c23f61d7",
+          "action_type": "hotkey",
+          "params": {
+            "keys": "ctrl+PgUp"
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "728b9709",
+          "action_type": "key_press",
+          "params": {
+            "key": "home"
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "d83c7e22",
+          "action_type": "key_press",
+          "params": {
+            "key": "right",
+            "presses": 4
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "a68f9f6f",
+          "action_type": "delay",
+          "params": {
+            "seconds": 2.3
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "a261d38c",
+          "action_type": "hotkey",
+          "params": {
+            "keys": "alt+down"
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "c0a8f646",
+          "action_type": "key_press",
+          "params": {
+            "key": "tab",
+            "presses": 3,
+            "interval": 0.1
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "1fcbe703",
+          "action_type": "key_press",
+          "params": {
+            "key": "enter",
+            "presses": 1
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "2b8da88d",
+          "action_type": "delay",
+          "params": {},
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "58ac8694",
+          "action_type": "hotkey",
+          "params": {
+            "keys": "alt+down"
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "e5519775",
+          "action_type": "key_press",
+          "params": {
+            "key": "tab",
+            "presses": 5,
+            "interval": 0.1
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "db691c0a",
+          "action_type": "key_press",
+          "params": {
+            "key": "space",
+            "presses": 1
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "92298448",
+          "action_type": "hotkey",
+          "params": {
+            "keys": "shift+tab"
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "5030b429",
+          "action_type": "type_text",
+          "params": {
+            "text": "9000"
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "f076130e",
+          "action_type": "delay",
+          "params": {
+            "seconds": 1.0
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "388a246c",
+          "action_type": "key_press",
+          "params": {
+            "key": "enter"
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "3f19cdcc",
+          "action_type": "delay",
+          "params": {
+            "seconds": 1.0
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "09b02647",
+          "action_type": "hotkey",
+          "params": {
+            "keys": "alt+down"
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "71a3814f",
+          "action_type": "key_press",
+          "params": {
+            "key": "tab",
+            "presses": 4,
+            "interval": 0.1
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "43d585c4",
+          "action_type": "type_text",
+          "params": {
+            "text": "11"
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "510a21e2",
+          "action_type": "delay",
+          "params": {
+            "seconds": 1.0
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "a2266df3",
+          "action_type": "key_press",
+          "params": {
+            "key": "down",
+            "presses": 3
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "bbc9bf7e",
+          "action_type": "delay",
+          "params": {
+            "seconds": 0.5
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "7b34eebb",
+          "action_type": "key_press",
+          "params": {
+            "key": "space"
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "7f697f81",
+          "action_type": "delay",
+          "params": {
+            "seconds": 0.5
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "b589f0e0",
+          "action_type": "key_press",
+          "params": {
+            "key": "enter"
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "17511f74",
+          "action_type": "delay",
+          "params": {
+            "seconds": 1.3
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "f87d9255",
+          "action_type": "hotkey",
+          "params": {
+            "keys": "alt+down"
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "be407e87",
+          "action_type": "key_press",
+          "params": {
+            "key": "tab",
+            "presses": 4,
+            "interval": 0.1
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "1c71093c",
+          "action_type": "type_text",
+          "params": {
+            "text": "120"
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "8a33f0b2",
+          "action_type": "delay",
+          "params": {
+            "seconds": 1.0
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "7dc4edcd",
+          "action_type": "key_press",
+          "params": {
+            "key": "down",
+            "presses": 3
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "bab883de",
+          "action_type": "delay",
+          "params": {
+            "seconds": 0.5
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "c1061344",
+          "action_type": "key_press",
+          "params": {
+            "key": "space"
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "c99f45a0",
+          "action_type": "delay",
+          "params": {
+            "seconds": 0.5
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "629cb353",
+          "action_type": "key_press",
+          "params": {
+            "key": "enter"
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "bcee9fb4",
+          "action_type": "delay",
+          "params": {},
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "56e662c7",
+          "action_type": "hotkey",
+          "params": {
+            "keys": "alt+down"
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "78647b4d",
+          "action_type": "key_press",
+          "params": {
+            "key": "tab",
+            "presses": 4,
+            "interval": 0.1
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "29c8eb94",
+          "action_type": "type_text",
+          "params": {
+            "text": "123"
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "6acccd6e",
+          "action_type": "delay",
+          "params": {
+            "seconds": 1.0
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "ab3859d4",
+          "action_type": "key_press",
+          "params": {
+            "key": "down",
+            "presses": 3
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "ff435e63",
+          "action_type": "delay",
+          "params": {
+            "seconds": 0.5
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "6f4a3743",
+          "action_type": "key_press",
+          "params": {
+            "key": "space"
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "48a27f4b",
+          "action_type": "delay",
+          "params": {
+            "seconds": 0.5
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "58c3694c",
+          "action_type": "key_press",
+          "params": {
+            "key": "enter"
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "d4bb5a55",
+          "action_type": "delay",
+          "params": {},
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "9633f62b",
+          "action_type": "hotkey",
+          "params": {
+            "keys": "ctrl+a"
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "2f6121c8",
+          "action_type": "hotkey",
+          "params": {
+            "keys": "ctrl+c"
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "8a8390aa",
+          "action_type": "delay",
+          "params": {},
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "5c0e88a6",
+          "action_type": "hotkey",
+          "params": {
+            "keys": "ctrl+PgDn"
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "71af4cbe",
+          "action_type": "hotkey",
+          "params": {
+            "keys": "ctrl+PgDn"
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "171cb78e",
+          "action_type": "hotkey",
+          "params": {
+            "keys": "ctrl+PgDn"
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "a4155c08",
+          "action_type": "hotkey",
+          "params": {
+            "keys": "ctrl+PgDn"
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "adbc1581",
+          "action_type": "hotkey",
+          "params": {
+            "keys": "ctrl+PgDn"
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "2dd4b085",
+          "action_type": "hotkey",
+          "params": {
+            "keys": "ctrl+v"
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "c8847a79",
+          "action_type": "delay",
+          "params": {
+            "seconds": 0.5
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "cf260086",
+          "action_type": "key_press",
+          "params": {
+            "key": "alt"
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "c9214cbd",
+          "action_type": "key_press",
+          "params": {
+            "key": "h"
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "233df71f",
+          "action_type": "key_press",
+          "params": {
+            "key": "o"
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "727d9d1c",
+          "action_type": "key_press",
+          "params": {
+            "key": "i"
+          },
+          "enabled": true,
+          "label_override": ""
+        },
+        {
+          "step_id": "c0edb122",
+          "action_type": "delay",
+          "params": {
+            "seconds": 0.5
+          },
+          "enabled": true,
+          "label_override": ""
+        }
+      ]
     }
   ]
 }
