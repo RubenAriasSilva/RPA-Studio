@@ -7,7 +7,7 @@
     {
       "group_id": "75f77d41",
       "title": "Abrir SAP",
-      "enabled": true,
+      "enabled": false,
       "collapsed": true,
       "steps": [
         {
@@ -146,7 +146,7 @@
     {
       "group_id": "10b1c9f0",
       "title": "ZCO022",
-      "enabled": true,
+      "enabled": false,
       "collapsed": true,
       "steps": [
         {
@@ -660,7 +660,7 @@
     {
       "group_id": "a4d3cd5b",
       "title": "LX02",
-      "enabled": true,
+      "enabled": false,
       "collapsed": true,
       "steps": [
         {
@@ -956,7 +956,7 @@
     {
       "group_id": "21f9cb72",
       "title": "LX02 -> YYFP",
-      "enabled": true,
+      "enabled": false,
       "collapsed": true,
       "steps": [
         {
@@ -1849,7 +1849,7 @@
     {
       "group_id": "74073961",
       "title": "YYFP",
-      "enabled": true,
+      "enabled": false,
       "collapsed": true,
       "steps": [
         {
@@ -2351,8 +2351,8 @@
     {
       "group_id": "e2a02080",
       "title": "Cerrar SAP",
-      "enabled": true,
-      "collapsed": true,
+      "enabled": false,
+      "collapsed": false,
       "steps": [
         {
           "step_id": "f615b8b8",
@@ -2436,6 +2436,13 @@
           "label_override": ""
         }
       ]
+    },
+    {
+      "group_id": "fc992c27",
+      "title": "Crear PFEP",
+      "enabled": true,
+      "collapsed": false,
+      "steps": []
     }
   ]
 }
