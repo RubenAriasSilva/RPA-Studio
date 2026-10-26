@@ -17,6 +17,7 @@ class RunnerState(Enum):
     PAUSED = "paused"
     STOPPED = "stopped"
     FINISHED = "finished"
+    FAILED = "failed"      # a step asked to end the whole process with an error
 
 
 class WorkflowRunner:
@@ -26,6 +27,8 @@ class WorkflowRunner:
         self._stop_event = threading.Event()
         self._pause_event = threading.Event()
         self._pause_event.set()
+        # Keys pressed by "Mantener Tecla - Inicio" and not yet released, innermost last
+        self._held_keys: list = []
 
         self.on_step_start: Optional[Callable] = None
         self.on_step_complete: Optional[Callable] = None
@@ -68,7 +71,28 @@ class WorkflowRunner:
         if self.on_log:
             self.on_log(message, level)
 
+    def _release_keys(self):
+        """Never leave a key stuck down in Windows once the workflow ends."""
+        if not self._held_keys:
+            return
+        import pyautogui
+        for keys in reversed(self._held_keys):
+            for key in reversed(keys):
+                try:
+                    pyautogui.keyUp(key)
+                except Exception:
+                    pass
+        self._log(f"  ⌨ Teclas soltadas al terminar: {', '.join('+'.join(k) for k in self._held_keys)}", "warning")
+        self._held_keys.clear()
+
     def _execute(self, workflow: Workflow):
+        self._held_keys.clear()
+        try:
+            self._execute_steps(workflow)
+        finally:
+            self._release_keys()
+
+    def _execute_steps(self, workflow: Workflow):
         from actions import ACTION_REGISTRY
 
         variables: Dict[str, Any] = dict(workflow.variables)
@@ -89,6 +113,7 @@ class WorkflowRunner:
             if self._stop_event.is_set():
                 self.state = RunnerState.STOPPED
                 self._log("Detenido por el usuario", "warning")
+                self._release_keys()
                 if self.on_finished:
                     self.on_finished(variables)
                 return
@@ -222,6 +247,7 @@ class WorkflowRunner:
                 "stop_event": self._stop_event,
                 "pause_event": self._pause_event,
                 "log": self._log,
+                "held_keys": self._held_keys,
             }
 
             if self.on_step_start:
@@ -247,10 +273,19 @@ class WorkflowRunner:
             if self.on_step_complete:
                 self.on_step_complete(idx, step, result)
 
+            if result.abort:
+                self.state = RunnerState.FAILED
+                self._log(f"⛔  Proceso finalizado por error en el paso {idx+1}: {workflow.name}", "error")
+                self._release_keys()
+                if self.on_finished:
+                    self.on_finished(variables)
+                return
+
             idx += 1
 
         self.state = RunnerState.FINISHED
         self._log(f"✓  Workflow completado: {workflow.name}", "success")
+        self._release_keys()
         if self.on_finished:
             self.on_finished(variables)
 

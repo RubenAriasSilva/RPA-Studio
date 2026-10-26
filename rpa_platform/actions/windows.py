@@ -10,11 +10,19 @@ from ctypes import wintypes
 from dataclasses import dataclass
 from typing import Callable, Dict, List, Optional
 
+from .base import ActionResult, progress_bar
+
 # SAP GUI session windows and modal popups use this class; dialogs like
 # "Guardar como" are plain #32770 windows owned by the SAP process.
 SAP_WINDOW_CLASS = "SAP_FRONTEND_SESSION"
 SAP_PROCESSES = ("saplogon.exe", "sapgui.exe", "saplgpad.exe")
 DIALOG_CLASS = "#32770"
+
+# What a wait action does when its time limit runs out
+ON_TIMEOUT_FAIL = "Marcar error"
+ON_TIMEOUT_CONTINUE = "Continuar"
+ON_TIMEOUT_ABORT = "Finalizar proceso con error"
+ON_TIMEOUT_CHOICES = [ON_TIMEOUT_FAIL, ON_TIMEOUT_CONTINUE, ON_TIMEOUT_ABORT]
 
 _IS_WINDOWS = os.name == "nt"
 
@@ -175,24 +183,43 @@ def matches_process(info: WindowInfo, process: str) -> bool:
     return info.process == process
 
 
+def timeout_result(params: Dict, msg: str, variables: Dict, hint: str = "") -> ActionResult:
+    """Result of a wait whose time limit ran out, according to its "on_timeout" option."""
+    choice = params.get("on_timeout", ON_TIMEOUT_FAIL)
+    if choice == ON_TIMEOUT_CONTINUE:
+        return ActionResult.success(output=f"{msg} — se continúa", variables=variables)
+    return ActionResult.failure(msg + hint, abort=choice == ON_TIMEOUT_ABORT)
+
+
+# Waits shorter than this end before a progress line is worth reading
+PROGRESS_MIN_SECONDS = 2
+
+
 def wait_until(context: Dict, check: Callable[[], object], timeout: float, interval: float = 0.25):
     """Poll `check()` until it returns something truthy or `timeout` seconds pass.
 
     Paused time does not count toward the timeout and "Detener" aborts the wait.
+    Progress against the time limit is logged once per second.
     Returns (value, elapsed_seconds, stopped).
     """
     stop_event = context.get("stop_event")
     pause_event = context.get("pause_event")
+    log = context.get("log")
+    show_progress = log is not None and timeout >= PROGRESS_MIN_SECONDS
     start = time.monotonic()
     paused = 0.0
     elapsed = 0.0
+    shown = -1
     while True:
         if stop_event is not None and stop_event.is_set():
             return None, elapsed, True
         if pause_event is not None and not pause_event.is_set():
+            if show_progress:
+                log(progress_bar(elapsed, timeout, paused=True), "progress")
             pause_started = time.monotonic()
             pause_event.wait()
             paused += time.monotonic() - pause_started
+            shown = -1
             continue
         value = check()
         elapsed = time.monotonic() - start - paused
@@ -200,4 +227,7 @@ def wait_until(context: Dict, check: Callable[[], object], timeout: float, inter
             return value, elapsed, False
         if elapsed >= timeout:
             return None, elapsed, False
+        if show_progress and int(elapsed) != shown:
+            shown = int(elapsed)
+            log(progress_bar(elapsed, timeout), "progress")
         time.sleep(min(interval, max(0.0, timeout - elapsed)))

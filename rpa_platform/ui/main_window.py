@@ -281,6 +281,8 @@ class MainWindow(QMainWindow):
         state = self._runner.state
         if state == RunnerState.STOPPED:
             self._status_label.setText("Detenido")
+        elif state == RunnerState.FAILED:
+            self._status_label.setText("Finalizado con error ✗")
         else:
             self._status_label.setText("Completado ✓")
 

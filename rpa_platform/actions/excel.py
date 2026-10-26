@@ -3,6 +3,7 @@ import json
 import re
 from typing import Dict, Any, Optional, List, Tuple
 from .base import BaseAction, ActionResult
+from .windows import ON_TIMEOUT_FAIL, ON_TIMEOUT_CHOICES
 
 
 # ---------- helpers ----------------------------------------------------------
@@ -495,3 +496,129 @@ class ExcelForEachRowAction(BaseAction):
         f = os.path.basename(self.params.get("file_path", ""))
         start = self.params.get("start_row", 2)
         return f"🔂 Para cada fila de {f} (desde fila {start})"
+
+
+# ---------- open workbooks (live Excel, not files on disk) -------------------
+
+_EXCEL_EXTS = (".xlsx", ".xlsm", ".xlsb", ".xls", ".xltx", ".xltm", ".csv")
+# Status text Excel appends to the window title after the workbook name
+_TITLE_STATUS = re.compile(
+    r"\s*(\[[^\]]*\]|-\s*(Solo lectura|Read-Only|Modo de compatibilidad|Compatibility Mode|"
+    r"Guardado|Saved|Guardando\S*|Saving\S*))\s*$",
+    re.IGNORECASE,
+)
+
+
+def _workbook_name_from_title(title: str) -> str:
+    """'reporte.xlsx [Modo de compatibilidad] - Excel' → 'reporte.xlsx'"""
+    name, n = re.subn(r"\s+-\s+(Microsoft\s+)?Excel\s*$", "", title.strip(), flags=re.IGNORECASE)
+    if not n:
+        return ""  # plain "Excel": the start screen while it loads, not a workbook
+    while True:
+        stripped = _TITLE_STATUS.sub("", name)
+        if stripped == name:
+            break
+        name = stripped
+    return re.sub(r":\d+$", "", name).strip()  # 'reporte.xlsx:2' is a second window of the same book
+
+
+def open_excel_workbooks() -> Dict[str, Tuple[str, Optional[int]]]:
+    """Workbooks open in any Excel instance: {name in lower case: (full path or "", hwnd or None)}.
+
+    Window titles catch every workbook, including unsaved ones and books opened
+    in a window Excel reused. The Running Object Table adds the full path of
+    every saved workbook, across all Excel instances.
+    """
+    from .windows import list_windows
+    books: Dict[str, Tuple[str, Optional[int]]] = {}
+    for w in list_windows():
+        if w.class_name == "XLMAIN" and w.process == "excel.exe":
+            name = _workbook_name_from_title(w.title)
+            if name:
+                books[name.lower()] = ("", w.hwnd)
+    try:
+        import pythoncom
+        ctx = pythoncom.CreateBindCtx(0)
+        for moniker in pythoncom.GetRunningObjectTable().EnumRunning():
+            try:
+                path = moniker.GetDisplayName(ctx, None)
+            except Exception:
+                continue
+            if path.lower().endswith(_EXCEL_EXTS):
+                key = os.path.basename(path).lower()
+                books[key] = (path, books.get(key, ("", None))[1])
+    except Exception:
+        pass
+    return books
+
+
+class ExcelWaitWorkbookAction(BaseAction):
+    action_type = "excel_wait_workbook"
+    label = "Excel - Esperar Libro Nuevo"
+    icon = "📗"
+
+    PARAM_SCHEMA = {
+        "name_contains": {"type": "str", "label": "Nombre del archivo contiene (vacío = cualquier libro nuevo)",
+                          "placeholder": "ej. export, .xlsx"},
+        "timeout": {"type": "float", "label": "Tiempo máximo de espera (seg)", "default": 120.0},
+        "on_timeout": {"type": "choice", "label": "Si no se abre", "default": ON_TIMEOUT_FAIL,
+                       "choices": ON_TIMEOUT_CHOICES},
+        "focus": {"type": "bool", "label": "Enfocar el libro cuando se abra", "default": True},
+        "output_variable": {"type": "str", "label": "Variable para el nombre del libro", "default": "excel_libro"},
+        "path_variable": {"type": "str", "label": "Variable para la ruta completa (vacía si no está guardado)",
+                          "default": "excel_ruta"},
+    }
+
+    def execute(self, context: Dict[str, Any]) -> ActionResult:
+        from .windows import wait_until, timeout_result, focus_window, list_windows
+        import pythoncom
+
+        params = self.resolve_params(context.get("variables", {}))
+        needle = str(params.get("name_contains", "")).strip().lower()
+        timeout = max(0.0, float(params.get("timeout", 120.0)))
+        name_var = str(params.get("output_variable", "excel_libro")).strip()
+        path_var = str(params.get("path_variable", "excel_ruta")).strip()
+
+        pythoncom.CoInitialize()  # the runner thread needs COM for the Running Object Table
+        try:
+            known = set(open_excel_workbooks())
+
+            def find():
+                for key, (path, hwnd) in open_excel_workbooks().items():
+                    if key not in known and (not needle or needle in key):
+                        return key, path, hwnd
+                return None
+
+            found, elapsed, stopped = wait_until(context, find, timeout, interval=0.5)
+        finally:
+            pythoncom.CoUninitialize()
+
+        if stopped:
+            return ActionResult.success(output="Espera de Excel interrumpida al detener el workflow")
+
+        if found is None:
+            variables = {k: "" for k in (name_var, path_var) if k}
+            what = f"con «{params.get('name_contains', '').strip()}» " if needle else ""
+            return timeout_result(params, f"No se abrió ningún libro de Excel {what}en {timeout:g} s", variables)
+
+        key, path, hwnd = found
+        name = os.path.basename(path) if path else key
+        if hwnd is None:
+            # Book known only through the ROT: find its window by title
+            hwnd = next((w.hwnd for w in list_windows() if w.class_name == "XLMAIN"
+                         and _workbook_name_from_title(w.title).lower() == key), None)
+        if params.get("focus", True) and hwnd:
+            focus_window(hwnd)
+        variables = {}
+        if name_var:
+            variables[name_var] = name
+        if path_var:
+            variables[path_var] = path
+        where = f" ({path})" if path else ""
+        return ActionResult.success(output=f"Se abrió el libro «{name}»{where} tras {elapsed:.1f} s",
+                                    variables=variables)
+
+    def get_summary(self) -> str:
+        needle = str(self.params.get("name_contains", "")).strip()
+        target = f"«{needle}»" if needle else "nuevo"
+        return f"Esperar libro de Excel {target} (máx {self.params.get('timeout', 120.0)}s)"

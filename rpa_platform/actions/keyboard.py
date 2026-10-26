@@ -2,7 +2,7 @@ import re
 import time
 import pyautogui
 import pyperclip
-from typing import Dict, Any
+from typing import Dict, Any, List
 from .base import BaseAction, ActionResult
 
 pyautogui.FAILSAFE = True
@@ -162,3 +162,66 @@ class KeyPressAction(BaseAction):
     def get_summary(self) -> str:
         presses = self.params.get("presses", 1)
         return f"Tecla '{self.params.get('key', '')}' × {presses}"
+
+
+def _split_keys(keys_str: str) -> List[str]:
+    return [k.strip().lower() for k in keys_str.split("+") if k.strip()]
+
+
+class KeyHoldStartAction(BaseAction):
+    """Presses keys down until the matching "Mantener Tecla - Fin" step.
+
+    Adding this action in the editor also inserts its end step right after it.
+    """
+    action_type = "key_hold_start"
+    label = "Mantener Tecla - Inicio"
+    icon = "⬇️"
+    PAIRED_END = "key_hold_end"
+
+    PARAM_SCHEMA = {
+        "keys": {"type": "str", "label": "Tecla(s) a mantener (ej: shift, ctrl, ctrl+shift)",
+                 "required": True, "default": "shift"},
+    }
+
+    def execute(self, context: Dict[str, Any]) -> ActionResult:
+        params = self.resolve_params(context.get("variables", {}))
+        keys = _split_keys(str(params.get("keys", "shift")))
+        if not keys:
+            return ActionResult.failure("Debe especificar la tecla a mantener")
+        invalid = [k for k in keys if k not in pyautogui.KEYBOARD_KEYS]
+        if invalid:
+            return ActionResult.failure(f"Tecla no reconocida: {', '.join(invalid)}")
+        try:
+            for key in keys:
+                pyautogui.keyDown(key)
+        except Exception as e:
+            return ActionResult.failure(str(e))
+        # The runner releases anything still held when the workflow ends
+        context.setdefault("held_keys", []).append(keys)
+        return ActionResult.success(output=f"Tecla(s) presionada(s): {'+'.join(keys)}")
+
+    def get_summary(self) -> str:
+        return f"⬇ Mantener presionada: {self.params.get('keys', 'shift')}"
+
+
+class KeyHoldEndAction(BaseAction):
+    action_type = "key_hold_end"
+    label = "Mantener Tecla - Fin"
+    icon = "⬆️"
+
+    PARAM_SCHEMA = {}
+
+    def execute(self, context: Dict[str, Any]) -> ActionResult:
+        held = context.get("held_keys") or []
+        if not held:
+            return ActionResult.success(output="No había teclas presionadas")
+        keys = held.pop()
+        try:
+            for key in reversed(keys):
+                pyautogui.keyUp(key)
+        except Exception as e:
+            return ActionResult.failure(str(e))
+        return ActionResult.success(output=f"Tecla(s) soltada(s): {'+'.join(keys)}")
+
+    def get_summary(self) -> str:
+        return "⬆ Soltar tecla(s)"

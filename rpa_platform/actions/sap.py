@@ -5,6 +5,7 @@ import subprocess
 from typing import Dict, Any, Optional, List, Tuple
 import pyautogui
 from .base import BaseAction, ActionResult
+from .windows import ON_TIMEOUT_FAIL, ON_TIMEOUT_CHOICES
 
 # Rutas comunes de saplogon.exe en instalaciones estándar
 _SAP_DEFAULT_PATHS = [
@@ -454,9 +455,6 @@ class SAPWaitScreenAction(BaseAction):
     COND_CONTAINS = "El título contenga"
     COND_NOT_CONTAINS = "El título deje de contener"
 
-    ON_TIMEOUT_FAIL = "Marcar error"
-    ON_TIMEOUT_CONTINUE = "Continuar"
-
     PARAM_SCHEMA = {
         "condition": {"type": "choice", "label": "Esperar hasta que", "default": COND_ANY,
                       "choices": [COND_ANY, COND_SCREEN, COND_POPUP, COND_CONTAINS, COND_NOT_CONTAINS]},
@@ -467,7 +465,7 @@ class SAPWaitScreenAction(BaseAction):
                            "default": ""},
         "timeout": {"type": "float", "label": "Tiempo máximo de espera (seg)", "default": 600.0},
         "on_timeout": {"type": "choice", "label": "Si se agota el tiempo", "default": ON_TIMEOUT_FAIL,
-                       "choices": [ON_TIMEOUT_FAIL, ON_TIMEOUT_CONTINUE]},
+                       "choices": ON_TIMEOUT_CHOICES},
         "wait_after": {"type": "float", "label": "Espera tras detectar el cambio (seg)", "default": 0.5},
         "output_variable": {"type": "str", "label": "Variable para el título nuevo", "default": "sap_titulo"},
     }
@@ -485,7 +483,7 @@ class SAPWaitScreenAction(BaseAction):
         return next((w for w in candidates if w.hwnd == fg), candidates[0])
 
     def execute(self, context: Dict[str, Any]) -> ActionResult:
-        from .windows import list_windows, window_exists, window_title, wait_until
+        from .windows import list_windows, window_exists, window_title, wait_until, timeout_result
 
         params = self.resolve_params(context.get("variables", {}))
         condition = params.get("condition", self.COND_ANY)
@@ -533,10 +531,8 @@ class SAPWaitScreenAction(BaseAction):
 
         if found is None:
             msg = f"SAP siguió en «{start_title}» después de {timeout:g} s"
-            if params.get("on_timeout", self.ON_TIMEOUT_FAIL) == self.ON_TIMEOUT_CONTINUE:
-                variables = {output_var: window_title(session.hwnd)} if output_var else {}
-                return ActionResult.success(output=f"{msg} — se continúa", variables=variables)
-            return ActionResult.failure(msg)
+            variables = {output_var: window_title(session.hwnd)} if output_var else {}
+            return timeout_result(params, msg, variables)
 
         kind, title = found
         if kind == "cerrada" and condition == self.COND_CONTAINS:

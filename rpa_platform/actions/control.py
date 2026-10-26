@@ -1,7 +1,8 @@
 import time
 import pyperclip
 from typing import Dict, Any
-from .base import BaseAction, ActionResult
+from .base import BaseAction, ActionResult, progress_bar
+from .windows import ON_TIMEOUT_FAIL, ON_TIMEOUT_CHOICES
 
 
 class DelayAction(BaseAction):
@@ -61,11 +62,10 @@ class DelayAction(BaseAction):
                 break
             elapsed = seconds - remaining
             if stop_event is not None and stop_event.is_set():
-                return ActionResult.success(
-                    output=f"Espera interrumpida ({self._fmt(elapsed, seconds)}/{self._fmt(seconds, seconds)} s)")
+                return ActionResult.success(output=f"Espera interrumpida ({elapsed:.1f}/{seconds:g} s)")
             if pause_event is not None and not pause_event.is_set():
                 if show_progress:
-                    log(self._progress_text(elapsed, seconds, paused=True), "progress")
+                    log(progress_bar(elapsed, seconds, paused=True), "progress")
                 pause_started = time.monotonic()
                 pause_event.wait()
                 end += time.monotonic() - pause_started
@@ -73,25 +73,12 @@ class DelayAction(BaseAction):
                 continue
             if show_progress and int(elapsed) != shown:
                 shown = int(elapsed)
-                log(self._progress_text(elapsed, seconds), "progress")
+                log(progress_bar(elapsed, seconds), "progress")
             time.sleep(min(0.1, remaining))
         return ActionResult.success(output=f"Esperó {seconds} segundos")
 
     # Shorter delays finish before a progress line is worth reading
     PROGRESS_MIN_SECONDS = 2
-    _BAR_WIDTH = 20
-
-    @staticmethod
-    def _fmt(value: float, total: float) -> str:
-        return str(int(value)) if float(total).is_integer() else f"{value:.1f}"
-
-    @classmethod
-    def _progress_text(cls, elapsed: float, total: float, paused: bool = False) -> str:
-        filled = min(cls._BAR_WIDTH, int(cls._BAR_WIDTH * elapsed / total))
-        bar = "█" * filled + "░" * (cls._BAR_WIDTH - filled)
-        state = "  (en pausa)" if paused else ""
-        return (f"  ⏱ {bar} {cls._fmt(elapsed, total)}/{cls._fmt(total, total)} s "
-                f"({int(100 * elapsed / total)}%){state}")
 
     def get_summary(self) -> str:
         if self._uses_variable():
@@ -104,9 +91,6 @@ class WaitForWindowAction(BaseAction):
     label = "Esperar Ventana"
     icon = "💬"
 
-    ON_TIMEOUT_FAIL = "Marcar error"
-    ON_TIMEOUT_CONTINUE = "Continuar"
-
     PARAM_SCHEMA = {
         "title_contains": {"type": "str", "label": "Título contiene (vacío = cualquier ventana nueva)",
                            "placeholder": "ej. Información, Guardar como"},
@@ -115,14 +99,14 @@ class WaitForWindowAction(BaseAction):
         "only_new": {"type": "bool", "label": "Ignorar ventanas que ya estaban abiertas", "default": True},
         "timeout": {"type": "float", "label": "Tiempo máximo de espera (seg)", "default": 30.0},
         "on_timeout": {"type": "choice", "label": "Si no aparece", "default": ON_TIMEOUT_FAIL,
-                       "choices": [ON_TIMEOUT_FAIL, ON_TIMEOUT_CONTINUE]},
+                       "choices": ON_TIMEOUT_CHOICES},
         "focus": {"type": "bool", "label": "Enfocar la ventana cuando aparezca", "default": True},
         "output_variable": {"type": "str", "label": "Variable para el título (vacía si no apareció)",
                             "default": "ventana_titulo"},
     }
 
     def execute(self, context: Dict[str, Any]) -> ActionResult:
-        from .windows import list_windows, matches_process, focus_window, wait_until
+        from .windows import list_windows, matches_process, focus_window, wait_until, timeout_result
 
         params = self.resolve_params(context.get("variables", {}))
         title_part = str(params.get("title_contains", "")).strip().lower()
@@ -154,11 +138,10 @@ class WaitForWindowAction(BaseAction):
             variables = {output_var: ""} if output_var else {}
             what = f"con «{params.get('title_contains', '').strip()}»" if title_part else "nueva"
             msg = f"No apareció ninguna ventana {what} en {timeout:g} s"
-            if params.get("on_timeout", self.ON_TIMEOUT_FAIL) == self.ON_TIMEOUT_CONTINUE:
-                return ActionResult.success(output=f"{msg} — se continúa", variables=variables)
+            hint = ""
             if only_new and title_part:
-                msg += " (si ya estaba abierta antes de este paso, desmarca 'Ignorar ventanas que ya estaban abiertas')"
-            return ActionResult.failure(msg)
+                hint = " (si ya estaba abierta antes de este paso, desmarca 'Ignorar ventanas que ya estaban abiertas')"
+            return timeout_result(params, msg, variables, hint)
 
         if params.get("focus", True):
             focus_window(window.hwnd)

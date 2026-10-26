@@ -18,14 +18,28 @@ class ActionResult:
     output: Any = None
     error: str = ""
     variables: Dict[str, Any] = field(default_factory=dict)
+    abort: bool = False  # stop the whole workflow, not just this step
 
     @classmethod
     def success(cls, output=None, variables=None):
         return cls(ActionStatus.SUCCESS, output=output, variables=variables or {})
 
     @classmethod
-    def failure(cls, error: str):
-        return cls(ActionStatus.FAILED, error=error)
+    def failure(cls, error: str, abort: bool = False):
+        return cls(ActionStatus.FAILED, error=error, abort=abort)
+
+
+_BAR_WIDTH = 20
+
+
+def progress_bar(elapsed: float, total: float, paused: bool = False) -> str:
+    """Log line for a timed wait, e.g. `⏱ █████░░░ 75/100 s (75%)`."""
+    fmt = (lambda v: str(int(v))) if float(total).is_integer() else (lambda v: f"{v:.1f}")
+    ratio = min(1.0, elapsed / total) if total else 1.0
+    filled = int(_BAR_WIDTH * ratio)
+    bar = "█" * filled + "░" * (_BAR_WIDTH - filled)
+    state = "  (en pausa)" if paused else ""
+    return f"  ⏱ {bar} {fmt(elapsed)}/{fmt(total)} s ({int(100 * ratio)}%){state}"
 
 
 class BaseAction:

@@ -331,6 +331,12 @@ class WorkflowEditor(QWidget):
             group_id = current.group.group_id
             current.group.collapsed = False
         step = self._workflow.add_step(action_type, index=index, group_id=group_id)
+        # Block actions (e.g. "Mantener Tecla") bring their closing step right after them
+        paired_end = getattr(ACTION_REGISTRY.get(action_type), "PAIRED_END", None)
+        if paired_end:
+            group = self._workflow.group_of(step.step_id)
+            self._workflow.add_step(paired_end, index=group.steps.index(step) + 1,
+                                    group_id=group.group_id)
         self._changed(select=([], [step.step_id]))
 
     def _on_drop_requested(self, group_ids: list, step_ids: list, target_group: str, index: int):

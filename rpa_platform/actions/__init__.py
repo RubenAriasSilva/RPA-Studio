@@ -3,7 +3,7 @@ from .vision import (
     VisionFindElementAction, VisionReadTextAction,
     VisionVerifyAction, VisionWaitForElementAction,
 )
-from .keyboard import TypeTextAction, HotkeyAction, KeyPressAction
+from .keyboard import TypeTextAction, HotkeyAction, KeyPressAction, KeyHoldStartAction, KeyHoldEndAction
 from .mouse import MouseClickAction, MouseMoveAction, MouseScrollAction
 from .screen import (
     ScreenshotAction, FindImageAction, WaitForImageAction,
@@ -20,7 +20,7 @@ from .dialogs import ShowAlertAction, ShowPromptAction
 from .excel import (
     ExcelReadCellAction, ExcelReadRangeAction, ExcelWriteCellAction,
     ExcelAppendRowAction, ExcelFormatRangeAction, ExcelFindValueAction,
-    ExcelSaveAction, ExcelForEachRowAction,
+    ExcelSaveAction, ExcelForEachRowAction, ExcelWaitWorkbookAction,
 )
 
 ACTION_REGISTRY = {
@@ -33,6 +33,8 @@ ACTION_REGISTRY = {
     "type_text": TypeTextAction,
     "hotkey": HotkeyAction,
     "key_press": KeyPressAction,
+    "key_hold_start": KeyHoldStartAction,
+    "key_hold_end": KeyHoldEndAction,
     "mouse_click": MouseClickAction,
     "mouse_move": MouseMoveAction,
     "mouse_scroll": MouseScrollAction,
@@ -68,6 +70,7 @@ ACTION_REGISTRY = {
     "excel_find_value": ExcelFindValueAction,
     "excel_save": ExcelSaveAction,
     "excel_foreach_row": ExcelForEachRowAction,
+    "excel_wait_workbook": ExcelWaitWorkbookAction,
 }
 
 ACTION_CATEGORIES = {
@@ -77,13 +80,13 @@ ACTION_CATEGORIES = {
         "vision_verify",
         "vision_wait_for_element",
     ],
-    "Teclado": ["type_text", "hotkey", "key_press"],
+    "Teclado": ["type_text", "hotkey", "key_press", "key_hold_start"],
     "Mouse": ["mouse_click", "mouse_move", "mouse_scroll"],
     "Pantalla": ["screenshot", "find_image", "wait_for_image", "wait_for_screen_change"],
     "OCR": ["ocr_region", "ocr_find_text"],
     "SAP": ["sap_launch", "sap_focus_window", "sap_open_transaction", "sap_type_in_field", "sap_read_field_ocr", "sap_click_button", "sap_wait_screen"],
     "Excel": ["excel_foreach_row", "excel_read_cell", "excel_read_range", "excel_write_cell",
-              "excel_append_row", "excel_format_range", "excel_find_value", "excel_save"],
+              "excel_append_row", "excel_format_range", "excel_find_value", "excel_save", "excel_wait_workbook"],
     "Diálogos": ["show_alert", "show_prompt"],
     "Control": ["delay", "wait_for_window", "wait", "set_variable", "get_clipboard", "if_condition", "loop_start", "loop_end"],
 }
@@ -98,6 +101,8 @@ ACTION_LABELS = {
     "type_text": "Escribir Texto",
     "hotkey": "Tecla Rápida",
     "key_press": "Presionar Tecla",
+    "key_hold_start": "Mantener Tecla Presionada",
+    "key_hold_end": "Soltar Tecla",
     "mouse_click": "Click",
     "mouse_move": "Mover Mouse",
     "mouse_scroll": "Scroll",
@@ -132,4 +137,5 @@ ACTION_LABELS = {
     "excel_find_value": "Excel - Buscar Valor",
     "excel_save": "Excel - Guardar",
     "excel_foreach_row": "Excel - Para Cada Fila",
+    "excel_wait_workbook": "Excel - Esperar Libro Nuevo",
 }
